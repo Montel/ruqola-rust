@@ -1,0 +1,119 @@
+/*
+* SPDX-FileCopyrightText: 2023-2024 Laurent Montel <laurent.montel@kdab.com>
+*
+* SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
+import { Button, LineEdit, StandardButton} from "std-widgets.slint";
+export struct AccountInfo {
+    account_name: string,
+    server_url: string,
+    user_name: string,
+    password: string,
+}
+
+
+export component AccountConfigurationDialog inherits Dialog {
+    callback update_ok_button();
+    callback create_update_account(AccountInfo);
+    callback cancel_button_clicked();
+
+    title: @tr("Configure Account");
+
+    in-out property <AccountInfo> account_info;
+    VerticalLayout {
+        alignment: center;
+        spacing: 5px;
+        GridLayout {
+            spacing: 5px;
+            Row {
+                Rectangle {
+                    Text {
+                        text: @tr("Account Name:");
+                    }
+                }
+
+                lineedit_account_name := LineEdit {
+                    text: account_info.account_name;
+                    edited => {
+                        update_ok_button();
+                    }
+                }
+            }
+
+            Row {
+                Rectangle {
+                    Text {
+                        text: @tr("Server Url:");
+                    }
+                }
+
+                lineedit_server_url := LineEdit {
+                    text: account_info.server_url;
+                    edited => {
+                        update_ok_button();
+                    }
+                }
+            }
+
+            Row {
+                // Need to use Rectangle for align center. Perhaps a limitation of Text.
+                Rectangle {
+                    Text {
+                        text: @tr("User name:");
+                    }
+                }
+
+                lineedit_username := LineEdit {
+                    text: account_info.user_name;
+                    edited => {
+                        update_ok_button();
+                    }
+                }
+            }
+
+            Row {
+                Rectangle {
+                    Text {
+                        text: @tr("Password:");
+                    }
+                }
+
+                lineedit_password := LineEdit {
+                    text: account_info.password;
+                    input-type: password;
+                    edited => {
+                        update_ok_button();
+                    }
+                }
+            }
+        }
+
+        HorizontalLayout {
+            alignment: center;
+            spacing: 5px;
+            buttonOk := StandardButton {
+                kind: ok;
+                enabled: false;
+                clicked => {
+                    account_info.account_name = lineedit_account_name.text;
+                    account_info.user-name = lineedit_username.text;
+                    account_info.password = lineedit_password.text;
+                    account_info.server_url = lineedit_server_url.text;
+                    create_update_account(account_info);
+                }
+            }
+
+            StandardButton {
+                kind: cancel;
+                clicked => {
+                    cancel_button_clicked();
+                }
+            }
+        }
+    }
+
+    update-ok-button => {
+        buttonOk.enabled = lineedit_server_url.text != "" && lineedit_username.text != "" && lineedit_password.text != "" && lineedit_account_name.text != "";
+    }
+}

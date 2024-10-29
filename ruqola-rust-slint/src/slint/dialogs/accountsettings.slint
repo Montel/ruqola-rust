@@ -1,0 +1,68 @@
+/*
+* SPDX-FileCopyrightText: 2023-2024 Laurent Montel <laurent.montel@kdab.com>
+*
+* SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
+import { StandardButton, Button, VerticalBox, GridBox, StandardListView, CheckBox } from "std-widgets.slint";
+
+export component AccountSettingsDialog inherits Dialog {
+    title: @tr("Settings");
+    callback updatebuttons();
+    callback add_new_account_clicked();
+    callback remove_account_clicked(int);
+    callback modify_account_clicked();
+    callback close_clicked();
+
+    in property <[StandardListViewItem]> account-model;
+    HorizontalLayout {
+        accountlist := StandardListView {
+            model: root.account-model;
+            current-item-changed => {
+                updatebuttons();
+            }
+        }
+
+        Rectangle {
+            VerticalLayout {
+                add_button := Button {
+                    text: @tr("Add Account");
+                    clicked => {
+                        add_new_account_clicked();
+                    }
+                }
+
+                modify_button := Button {
+                    text: @tr("Modify Account");
+                    enabled: false;
+                    clicked => {
+                        modify_account_clicked();
+                        // TODO
+                    }
+                }
+
+                remove_button := Button {
+                    text: @tr("Remove Account");
+                    enabled: false;
+                    clicked => {
+                        remove_account_clicked(accountlist.current-item);
+                    }
+                }
+            }
+        }
+    }
+
+    updatebuttons => {
+        modify_button.enabled = accountlist.current-item != -1;
+        remove_button.enabled = accountlist.current-item != -1;
+    }
+
+    preferred-height: 400px;
+    preferred-width: 600px;
+    StandardButton {
+        kind: close;
+        clicked => {
+            close_clicked();
+        }
+    }
+}

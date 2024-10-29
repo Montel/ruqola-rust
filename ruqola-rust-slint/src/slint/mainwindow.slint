@@ -1,0 +1,64 @@
+/*
+ * SPDX-FileCopyrightText: 2023-2024 Laurent Montel <laurent.montel@kdab.com>
+ *
+ * SPDX-License-Identifier: LGPL-2.0-or-later
+ */
+
+import { Button, LineEdit, StandardListView, StandardButton} from "std-widgets.slint";
+import { MainPage } from "screens/mainpage.slint";
+import { SelectAccountsPage } from "screens/selectaccount.slint";
+
+// Need to import/export singleton for using it outside slint
+import { ScreenController, PageType } from "singletons/screencontroller.slint";
+export { ScreenController, PageType }
+
+import { AccountSettingsDialog } from "dialogs/accountsettings.slint";
+export { AccountSettingsDialog }
+
+import { AccountConfigurationDialog } from "dialogs/accountconfiguration.slint";
+export { AccountConfigurationDialog }
+
+
+export component RuqolaWindow inherits Window {
+    title: @tr("Ruqola-Rust");
+
+    callback send_message(string);
+    callback show_configure_accounts();
+    callback connect_account(int);
+    callback show_accounts();
+    callback disconnect_account();
+    callback quit();
+    preferred-width: 700px;
+    preferred-height: 500px;
+
+    in property <[StandardListViewItem]> account-model;
+    MainPage {
+        visible: ScreenController.resolved-page-id == self.screen-id;
+        quit => {
+            root.quit();
+        }
+        show-configure-accounts => {
+            root.show_configure_accounts();
+        }
+
+        show_accounts => {
+            ScreenController.resolved-page-id = PageType.SelectAccount;
+            root.show_accounts();
+        }
+        send_message(str) => {
+            root.send_message(str)
+        }
+        disconnect_account => {
+            root.disconnect_account();
+        }
+    }
+
+    SelectAccountsPage {
+        visible: ScreenController.resolved-page-id == self.screen-id;
+        account-model: root.account-model;
+        connect_account(index) => {
+            ScreenController.resolved-page-id = PageType.MainPage;
+            connect_account(index)
+        }
+    }
+}

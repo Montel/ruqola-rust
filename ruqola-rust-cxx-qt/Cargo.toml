@@ -1,0 +1,27 @@
+ # SPDX-FileCopyrightText: 2024 Laurent Montel <montel@kde.org>
+ # SPDX-License-Identifier: LGPL-2.0-or-later
+[package]
+name = "ruqola-rust-cxx-qt"
+version = "0.1.1"
+edition = "2021"
+authors = ["Laurent Montel <laurent.montel@kdab.com>"]
+license = "LGPL-2.0-or-later"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# Specific rocket chat lib => rest API support
+librocketchatrestapi = { path = "../librocketchatrestapi" }
+
+# Specific rocket chat lib => core lib (parsing etc.)
+libruqolacore = { path = "../libruqolacore" }
+
+# Use for encrypting password for websocket
+sha256 = "1.1.1"
+
+cxx = "1.0.95"
+cxx-qt = "0.6"
+cxx-qt-lib = "0.6"
+
+[build-dependencies]
+# The link_qt_object_files feature is required for statically linking Qt 6.
+cxx-qt-build = { version = "0.6", features = [ "link_qt_object_files" ] }

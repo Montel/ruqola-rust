@@ -1,0 +1,52 @@
+# SPDX-FileCopyrightText: 2023 Laurent Montel <montel@kde.org>
+# SPDX-License-Identifier: LGPL-2.0-or-later
+
+[package]
+name = "libruqolacore"
+version = "0.1.0"
+edition = "2021"
+authors = ["Laurent Montel <montel@kde.org>"]
+license = "LGPL-2.0-or-later"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "example-get-rooms"
+path = "examples/example-get-rooms.rs"
+
+[[bin]]
+name = "example-get-list-commands"
+path = "examples/example-get-list-commands.rs"
+
+[[bin]]
+name = "example-get-list-permissions"
+path = "examples/example-get-list-permissions.rs"
+
+[dependencies]
+json = "0.12.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+#https://docs.rs/xdg/2.4.1/xdg/struct.BaseDirectories.html#method.find_config_file
+xdg = "2.4.1"
+#https://docs.rs/crate/rust-ini/0.18.0
+rust-ini = "0.21.0"
+
+tokio = { version = "1", features = ["full"] }
+
+lazy_static = "1.4.0"
+
+# Specific rocket chat lib => rest API support
+librocketchatrestapi = { path = "../librocketchatrestapi" }
+libddpapi = { path = "../libddpapi" }
+
+reqwest = { version = "0.12.4", features = ["json"] }
+# Use for loading specific settings
+config-file = "0.2.3"
+
+#libsecret support
+libsecret = "0.5.0"
+chrono = { version = "0.4.37", features = ["serde"] }
+anyhow = "1.0.83"
+standard_paths = "2.1.0"
+
+libauthenticationbase = { path = "../libauthenticationbase" }

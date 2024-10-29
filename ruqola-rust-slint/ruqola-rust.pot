@@ -1,0 +1,104 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2023-08-11 12:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ./src/slint/screens/configureaccounts.slint:30
+msgctxt "ConfigureAccountsPage"
+msgid "Account Name:"
+msgstr ""
+
+#: ./src/slint/screens/configureaccounts.slint:43
+msgctxt "ConfigureAccountsPage"
+msgid "Server Url:"
+msgstr ""
+
+#: ./src/slint/screens/configureaccounts.slint:57
+msgctxt "ConfigureAccountsPage"
+msgid "User name:"
+msgstr ""
+
+#: ./src/slint/screens/configureaccounts.slint:70
+msgctxt "ConfigureAccountsPage"
+msgid "Password:"
+msgstr ""
+
+#: ./src/slint/screens/mainpage.slint:27
+msgctxt "MainPage"
+msgid "Configure Accounts"
+msgstr ""
+
+#: ./src/slint/screens/mainpage.slint:33
+msgctxt "MainPage"
+msgid "Connect"
+msgstr ""
+
+#: ./src/slint/screens/mainpage.slint:39
+msgctxt "MainPage"
+msgid "Disconnect"
+msgstr ""
+
+#: ./src/slint/screens/mainpage.slint:45
+msgctxt "MainPage"
+msgid "Quit"
+msgstr ""
+
+#: ./src/slint/screens/mainpage.slint:69
+msgctxt "MainPage"
+msgid "Send Message"
+msgstr ""
+
+#: ./src/slint/dialogs/configureserverdialog.slint:20
+msgctxt "ConfigureServerDialog"
+msgid "Configue Server"
+msgstr ""
+
+#: ./src/slint/dialogs/configureserverdialog.slint:27
+msgctxt "ConfigureServerDialog"
+msgid "Account Name:"
+msgstr ""
+
+#: ./src/slint/dialogs/configureserverdialog.slint:40
+msgctxt "ConfigureServerDialog"
+msgid "Server Url:"
+msgstr ""
+
+#: ./src/slint/dialogs/configureserverdialog.slint:54
+msgctxt "ConfigureServerDialog"
+msgid "User name:"
+msgstr ""
+
+#: ./src/slint/dialogs/configureserverdialog.slint:67
+msgctxt "ConfigureServerDialog"
+msgid "Password:"
+msgstr ""
+
+#: ./src/slint/dialogs/configureaccountswindow.slint:50
+msgctxt "ConfigureAccountsWindow"
+msgid "Add"
+msgstr ""
+
+#: ./src/slint/dialogs/configureaccountswindow.slint:56
+msgctxt "ConfigureAccountsWindow"
+msgid "Modify"
+msgstr ""
+
+#: ./src/slint/dialogs/configureaccountswindow.slint:64
+msgctxt "ConfigureAccountsWindow"
+msgid "Remove"
+msgstr ""
+
+#: ./src/slint/dialogs/selectserverdialog.slint:11
+msgctxt "SelectServerDialog"
+msgid "Select Account"
+msgstr ""
+

@@ -1,0 +1,37 @@
+[package]
+name = "libddpapi"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio-tungstenite = { version = "0.21.0", features = ["native-tls"] }
+serde = { version = "1.0.145", features = ["derive"] }
+serde_json = "1.0"
+# Use for encrypting password for websocket
+sha256 = "1.1.1"
+futures-channel = "0.3.30"
+
+futures-util = { version = "0.3.28", default-features = false, features = ["sink", "std"] }
+tokio = { version = "1.2.0", features = ["full"] }
+url = "2.5.0"
+futures = "0.3.30"
+
+libauthenticationbase = { path = "../libauthenticationbase" }
+
+
+[[bin]]
+name = "example-ddp-connection"
+path = "examples/example-ddp-connection.rs"
+required-features = ["connect"]
+
+[features]
+default = ["connect", "handshake"]
+handshake = ["tungstenite/handshake"]
+connect = ["stream", "tokio/net", "handshake"]
+stream = []
+
+[dependencies.tungstenite]
+version = "0.21.0"
+default-features = false

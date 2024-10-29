@@ -1,0 +1,11 @@
+export enum PageType {
+    MainPage,
+    SelectAccount,
+    ConfigureAccounts
+}
+
+export global ScreenController {
+    in property <PageType> resolved-page-id: PageType.MainPage;
+
+    callback request-current-page(PageType) -> bool;
+}

@@ -1,0 +1,32 @@
+/*
+ * SPDX-FileCopyrightText: 2023-2024 Laurent Montel <laurent.montel@kdab.com>
+ *
+ * SPDX-License-Identifier: LGPL-2.0-or-later
+ */
+
+import { Page } from "../page.slint";
+import { PageType } from "../singletons/screencontroller.slint";
+import { StandardListView, Button } from "std-widgets.slint";
+
+
+export component SelectAccountsPage inherits Page {
+    screen-id: PageType.SelectAccount;
+    in property <[StandardListViewItem]> account-model;
+    callback connect_account(int);
+    VerticalLayout {
+        accountlist := StandardListView {
+            model: root.account-model;
+            current-item-changed => {
+                // TODO updatebuttons();
+            }
+        }
+
+        Button {
+            text: @tr("Connect...");
+            enabled: accountlist.current-item != -1;
+            clicked => {
+                connect_account(accountlist.current-item);
+            }
+        }
+    }
+}

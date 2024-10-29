@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2023 Laurent Montel <montel@kde.org>
+# SPDX-License-Identifier: LGPL-2.0-or-later
+[package]
+name = "librocketchatrestapi"
+version = "0.1.0"
+edition = "2021"
+authors = ["Laurent Montel <montel@kde.org>"]
+license = "LGPL-2.0-or-later"
+
+[[bin]]
+name = "get-room-example"
+path = "example/get-room-example.rs"
+
+[[bin]]
+name = "get-list-commands-example"
+path = "example/get-list-commands-example.rs"
+
+[[bin]]
+name = "get-permissions-example"
+path = "example/example-get-permissions.rs"
+
+[dependencies]
+async-trait = "0.1.58"
+reqwest = { version = "0.12.2", features = ["json"] }
+serde = { version = "1.0.145", features = ["derive"] }
+assert_matches = "1.5"
+tokio = { version = "1.2", features = ["rt-multi-thread", "macros"] }
+# Use for loading specific settings
+config-file = "0.2.3"
+libauthenticationbase = { path = "../libauthenticationbase" }
+

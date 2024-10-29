@@ -1,0 +1,49 @@
+# SPDX-FileCopyrightText: 2023 Laurent Montel <montel@kde.org>
+# SPDX-License-Identifier: LGPL-2.0-or-later
+[package]
+name = "ruqola-rust"
+version = "0.1.1"
+edition = "2021"
+build = "src/build.rs"
+authors = ["Laurent Montel <montel@kde.org>"]
+license = "LGPL-2.0-or-later"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.0", features = ["derive"] }
+
+url = "2.2.2"
+
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
+async-std = { version = "1", features = ["attributes", "tokio1"] }
+
+
+# Specific rocket chat lib => rest API support
+librocketchatrestapi = { path = "../librocketchatrestapi" }
+
+# Specific rocket chat lib => core lib (parsing etc.)
+libruqolacore = { path = "../libruqolacore" }
+
+# Specific rocket chat lib => core lib (parsing etc.)
+libddpapi = { path = "../libddpapi" }
+
+# Use for encrypting password for websocket
+sha256 = "1.1.1"
+
+# Slint is used for Interface
+slint = { git = "https://github.com/slint-ui/slint.git", features = [
+    "gettext",
+] }
+#slint = "1.0.2"
+
+secret-service = { version = "3.0.1", features = [
+    "rt-tokio-crypto-rust",
+] } # This library implements a rust interface to the Secret Service API which is implemented in Linux.
+
+log = "0.4"
+
+libauthenticationbase = { path = "../libauthenticationbase" }
+[build-dependencies]
+slint-build = { git = "https://github.com/slint-ui/slint.git" }
