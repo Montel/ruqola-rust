@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2023 Laurent Montel <montel@kde.org>
+# SPDX-FileCopyrightText: 2023 Laurent Montel <laurent.montel@kdab.com>
 # SPDX-License-Identifier: LGPL-2.0-or-later
 
 [package]
 name = "libruqolacore"
 version = "0.1.0"
 edition = "2021"
-authors = ["Laurent Montel <montel@kde.org>"]
+authors = ["Laurent Montel <laurent.montel@kdab.com>"]
 license = "LGPL-2.0-or-later"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
