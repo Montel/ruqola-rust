@@ -12,7 +12,7 @@ pub use chat::{
 pub use rooms::{ChangeRoomFavoriteMethod, GetDiscussionsMethod, GetRoomsMethod};
 
 pub use commands::{GetCommandsMethod, GetListCommandsMethod};
-pub use invite::InviteListMethod;
+pub use invite::{InviteListMethod, SendInvitationEmailMethod};
 pub use teams::GetTeamInfoMethod;
 
 pub use licenses::{LicensesIsEnterpriseMethod, LicensesListMethod};
