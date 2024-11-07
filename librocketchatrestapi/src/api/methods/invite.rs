@@ -44,7 +44,7 @@ impl APIMethod for InviteListMethod {
     }
 
     fn method(&self) -> Method {
-        Method::POST
+        Method::GET
     }
 
     fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
