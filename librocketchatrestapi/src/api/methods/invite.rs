@@ -111,9 +111,28 @@ impl APIMethod for SendInvitationEmailMethod<'_> {
 
 #[cfg(test)]
 mod tests {
-    use crate::methods::{APIMethod, SendInvitationEmailMethod};
+    use crate::methods::{APIMethod, InviteListMethod, SendInvitationEmailMethod};
     use reqwest::Method;
 
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
-    // TODO
+    pub fn generate_default_settings() -> AuthenticationType {
+        AuthenticationType::Login(LoginSettings {
+            username: "chuck_norris".to_string(),
+            password: "supersecret".to_string(),
+        })
+    }
+
+    #[test]
+    fn test_get_invite_list_values() {
+        let loginsettings = generate_default_settings();
+        let result = InviteListMethod {
+            settings: loginsettings,
+            server_url: "https://mydomain.com".to_string(),
+        };
+        assert_eq!(result.endpoint(), "/api/v1/listInvites");
+        assert_eq!(result.method(), Method::GET);
+        assert!(result.required_authentication());
+        assert!(result.query_parameters().is_none());
+        assert!(result.json_payload().is_none());
+    }
 }
