@@ -108,3 +108,12 @@ impl APIMethod for SendInvitationEmailMethod<'_> {
         &self.server_url
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::methods::{APIMethod, SendInvitationEmailMethod};
+    use reqwest::Method;
+
+    use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
+    // TODO
+}
