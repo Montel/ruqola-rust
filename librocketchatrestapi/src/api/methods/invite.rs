@@ -10,6 +10,8 @@ use reqwest::Method;
 use crate::api::methods::base::PayloadValue;
 use crate::api::methods::APIMethod;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
+
+// Invite job
 pub struct InviteListMethod {
     pub settings: AuthenticationType,
     pub server_url: String,
@@ -47,6 +49,59 @@ impl APIMethod for InviteListMethod {
 
     fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
         None
+    }
+
+    fn domain(&self) -> &str {
+        &self.server_url
+    }
+}
+
+// Send invitation
+
+pub struct SendInvitationEmailMethod<'a> {
+    pub settings: AuthenticationType,
+    pub server_url: String,
+    pub emails: Vec<&'a str>,
+}
+
+impl Default for SendInvitationEmailMethod<'_> {
+    fn default() -> Self {
+        SendInvitationEmailMethod {
+            settings: AuthenticationType::None,
+            server_url: String::default(),
+            emails: vec![],
+        }
+    }
+}
+
+impl APIMethod for SendInvitationEmailMethod<'_> {
+    fn settings(&self) -> &AuthenticationType {
+        &self.settings
+    }
+
+    fn query_parameters(&self) -> Option<HashMap<String, String>> {
+        None
+    }
+
+    fn endpoint(&self) -> &str {
+        "/api/v1/sendInvitationEmail"
+    }
+
+    fn required_authentication(&self) -> bool {
+        true
+    }
+
+    fn method(&self) -> Method {
+        Method::POST
+    }
+
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+        let mut payload: HashMap<String, PayloadValue> = HashMap::new();
+        payload.insert(
+            "emails".to_string(),
+            PayloadValue::ListOfString(self.emails.clone()),
+        );
+        Some(payload)
     }
 
     fn domain(&self) -> &str {
