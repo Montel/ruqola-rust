@@ -1,8 +1,8 @@
 /*
- * SPDX-FileCopyrightText: 2023-2024 Laurent Montel <laurent.montel@kdab.com>
- *
- * SPDX-License-Identifier: LGPL-2.0-or-later
- */
+* SPDX-FileCopyrightText: 2023-2024 Laurent Montel <laurent.montel@kdab.com>
+*
+* SPDX-License-Identifier: LGPL-2.0-or-later
+*/
 use std::collections::HashMap;
 
 use reqwest::Method;
@@ -111,7 +111,8 @@ impl APIMethod for SendInvitationEmailMethod<'_> {
 
 #[cfg(test)]
 mod tests {
-    use crate::methods::{APIMethod, InviteListMethod, SendInvitationEmailMethod};
+    use crate::methods::{APIMethod, InviteListMethod, PayloadValue, SendInvitationEmailMethod};
+    use assert_matches::assert_matches;
     use reqwest::Method;
 
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
@@ -134,5 +135,33 @@ mod tests {
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
         assert!(result.json_payload().is_none());
+    }
+    #[test]
+    fn test_send_invitation_values() {
+        let loginsettings = generate_default_settings();
+        let result = SendInvitationEmailMethod {
+            settings: loginsettings,
+            server_url: "https://mydomain.com".to_string(),
+            emails: vec!["foo@kde.org", "bla@kde.org"],
+        };
+        assert_eq!(result.endpoint(), "/api/v1/sendInvitationEmail");
+        assert_eq!(result.method(), Method::POST);
+        assert!(result.required_authentication());
+        assert!(result.query_parameters().is_none());
+        assert!(result.json_payload().is_some());
+        // Test Json values.
+        /*
+        if let Some(json) = &result.json_payload() {
+            assert_matches!(
+                json.get("roomId"),
+                Some(PayloadValue::String(r#"room_id2"#))
+            );
+            assert_matches!(
+                json.get("emails"),
+                Some(PayloadValue::ListOfString(vec<&'a str>["foo@kde.org", "bla@kde.org"]))
+            );
+            // TODO check json
+        }
+        */
     }
 }
