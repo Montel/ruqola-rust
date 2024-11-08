@@ -10,6 +10,53 @@ use std::collections::HashMap;
 use crate::api::methods::base::PayloadValue;
 use crate::api::methods::APIMethod;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
+
+/// Implement teams.delete
+pub struct GetTeamsListMethod {
+    pub settings: AuthenticationType,
+    pub server_url: String,
+    // TODO add pattern
+}
+
+impl Default for GetTeamsListMethod {
+    fn default() -> Self {
+        GetTeamsListMethod {
+            settings: AuthenticationType::None,
+            server_url: String::default(),
+        }
+    }
+}
+
+impl APIMethod for GetTeamsListMethod {
+    fn settings(&self) -> &AuthenticationType {
+        &self.settings
+    }
+
+    fn endpoint(&self) -> &str {
+        "/api/v1/teams.list"
+    }
+
+    fn required_authentication(&self) -> bool {
+        true
+    }
+
+    fn query_parameters(&self) -> Option<HashMap<String, String>> {
+        None
+    }
+
+    fn method(&self) -> Method {
+        Method::GET
+    }
+
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+        None
+    }
+
+    fn domain(&self) -> &str {
+        &self.server_url
+    }
+}
+
 /// Implement GetTeamInfoMethod
 pub struct GetTeamInfoMethod {
     pub settings: AuthenticationType,
@@ -61,7 +108,7 @@ impl APIMethod for GetTeamInfoMethod {
 
 #[cfg(test)]
 mod tests {
-    use crate::methods::{APIMethod, GetTeamInfoMethod};
+    use crate::methods::{APIMethod, GetTeamInfoMethod, GetTeamsListMethod};
     use reqwest::Method;
 
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
@@ -89,6 +136,20 @@ mod tests {
         } else {
             panic!("Impossble to get parameters");
         }
+        assert!(result.json_payload().is_none());
+    }
+
+    #[test]
+    fn test_get_teams_list_values() {
+        let loginsettings = generate_default_settings();
+        let result = GetTeamsListMethod {
+            settings: loginsettings,
+            server_url: "https://mydomain.com".to_string(),
+        };
+        assert_eq!(result.endpoint(), "/api/v1/teams.list");
+        assert_eq!(result.method(), Method::GET);
+        assert!(result.required_authentication());
+        assert!(result.query_parameters().is_none());
         assert!(result.json_payload().is_none());
     }
 }

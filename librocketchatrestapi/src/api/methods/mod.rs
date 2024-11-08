@@ -13,7 +13,7 @@ pub use rooms::{ChangeRoomFavoriteMethod, GetDiscussionsMethod, GetRoomsMethod};
 
 pub use commands::{GetCommandsMethod, GetListCommandsMethod};
 pub use invite::{InviteListMethod, SendInvitationEmailMethod};
-pub use teams::GetTeamInfoMethod;
+pub use teams::{GetTeamInfoMethod, GetTeamsListMethod};
 
 pub use licenses::{LicensesIsEnterpriseMethod, LicensesListMethod};
 pub use moderation::{GetModerationReportInfo, GetModerationReports};
