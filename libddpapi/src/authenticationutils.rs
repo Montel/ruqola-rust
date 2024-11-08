@@ -109,6 +109,15 @@ pub fn login(user: &str, password: &str) -> serde_json::Value {
 #[cfg(test)]
 mod tests {
     use crate::authenticationutils;
+
+    #[test]
+    fn test_convert_password_ssha256() {
+        assert_eq!(
+            authenticationutils::convert_password_ssha256(String::from("foo")),
+            "2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae"
+        );
+    }
+
     #[test]
     fn test_login_resume() {
         assert_eq!(
