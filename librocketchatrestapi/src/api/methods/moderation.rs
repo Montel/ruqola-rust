@@ -107,9 +107,60 @@ impl APIMethod for GetModerationReports {
     }
 }
 
+/// Implement GetModerationReports
+pub struct GetModerationDismissUserReports {
+    pub settings: AuthenticationType,
+    pub server_url: String,
+    pub user_id: String,
+}
+
+impl Default for GetModerationDismissUserReports {
+    fn default() -> Self {
+        GetModerationDismissUserReports {
+            settings: AuthenticationType::None,
+            server_url: String::default(),
+            user_id: String::default(),
+        }
+    }
+}
+
+impl APIMethod for GetModerationDismissUserReports {
+    fn settings(&self) -> &AuthenticationType {
+        &self.settings
+    }
+
+    fn endpoint(&self) -> &str {
+        "/api/v1/moderation.dismissUserReports"
+    }
+
+    fn required_authentication(&self) -> bool {
+        true
+    }
+
+    fn query_parameters(&self) -> Option<HashMap<String, String>> {
+        let mut payload: HashMap<String, String> = HashMap::new();
+        payload.insert("userId".to_string(), self.user_id.clone());
+        Some(payload)
+    }
+
+    fn method(&self) -> Method {
+        Method::GET
+    }
+
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+        None
+    }
+
+    fn domain(&self) -> &str {
+        &self.server_url
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::methods::{APIMethod, GetModerationReportInfo, GetModerationReports};
+    use crate::methods::{
+        APIMethod, GetModerationDismissUserReports, GetModerationReportInfo, GetModerationReports,
+    };
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
     use reqwest::Method;
 
@@ -155,6 +206,27 @@ mod tests {
         if let Some(query) = &result.query_parameters() {
             let _message_id = "foo".to_string();
             assert_eq!(query.get("msgId"), Some(&_message_id));
+        } else {
+            panic!("Impossble to get parameters");
+        }
+        assert!(result.json_payload().is_none());
+    }
+
+    #[test]
+    fn test_get_moderation_dismiss_user_reports_values() {
+        let result = GetModerationDismissUserReports {
+            settings: generate_default_settings(),
+            user_id: "bla".to_string(),
+            server_url: "https://mydomain.com".to_string(),
+        };
+        assert_eq!(result.endpoint(), "/api/v1/moderation.dismissUserReports");
+        assert_eq!(result.method(), Method::GET);
+        assert!(result.required_authentication());
+
+        // Test Json values.
+        if let Some(query) = &result.query_parameters() {
+            let _user_id = "bla".to_string();
+            assert_eq!(query.get("userId"), Some(&_user_id));
         } else {
             panic!("Impossble to get parameters");
         }
