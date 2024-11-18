@@ -111,8 +111,7 @@ impl APIMethod for SendInvitationEmailMethod<'_> {
 
 #[cfg(test)]
 mod tests {
-    use crate::methods::{APIMethod, InviteListMethod, PayloadValue, SendInvitationEmailMethod};
-    use assert_matches::assert_matches;
+    use crate::methods::{APIMethod, InviteListMethod, SendInvitationEmailMethod};
     use reqwest::Method;
 
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
