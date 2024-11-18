@@ -16,17 +16,18 @@ pub use invite::{InviteListMethod, SendInvitationEmailMethod};
 pub use teams::{GetTeamInfoMethod, GetTeamsListMethod};
 
 pub use licenses::{LicensesIsEnterpriseMethod, LicensesListMethod};
+pub use misc::StatisticsMethod;
 pub use moderation::{
     GetModerationDismissUserReports, GetModerationReportInfo, GetModerationReports,
 };
 pub use permissions::PermissionsListAllMethod;
-
 mod base;
 mod channels;
 mod chat;
 mod commands;
 mod invite;
 mod licenses;
+mod misc;
 mod moderation;
 mod permissions;
 mod rooms;
