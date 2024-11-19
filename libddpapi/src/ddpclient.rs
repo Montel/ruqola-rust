@@ -224,7 +224,7 @@ impl DDpClientTask {
                     ddpmessage::MessageReceivedType::NoSub(text) =>  {
                         self.no_subscribe(text)
                     },
-                    ddpmessage::MessageReceivedType::Ready(string) => {
+                    ddpmessage::MessageReceivedType::Ready(_) => {
                         println!("READY***********************");
                         // TODO need to change status ???
                     },
