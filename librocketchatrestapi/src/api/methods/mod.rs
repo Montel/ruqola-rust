@@ -16,7 +16,7 @@ pub use invite::{InviteListMethod, SendInvitationEmailMethod};
 pub use teams::{GetTeamInfoMethod, GetTeamsListMethod};
 
 pub use licenses::{LicensesIsEnterpriseMethod, LicensesListMethod};
-pub use misc::StatisticsMethod;
+pub use misc::{OwnMethod, StatisticsMethod};
 pub use moderation::{
     GetModerationDismissUserReports, GetModerationReportInfo, GetModerationReports,
 };

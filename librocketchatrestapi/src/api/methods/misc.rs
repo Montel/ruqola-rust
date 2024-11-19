@@ -10,6 +10,7 @@ use std::collections::HashMap;
 use crate::api::methods::{base::PayloadValue, APIMethod};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 
+// Statistic method
 pub struct StatisticsMethod {
     pub settings: AuthenticationType,
     pub server_url: String,
@@ -62,9 +63,54 @@ impl APIMethod for StatisticsMethod {
     }
 }
 
+// Own info
+pub struct OwnMethod {
+    pub settings: AuthenticationType,
+    pub server_url: String,
+}
+
+impl Default for OwnMethod {
+    fn default() -> Self {
+        OwnMethod {
+            settings: AuthenticationType::None,
+            server_url: String::default(),
+        }
+    }
+}
+
+impl APIMethod for OwnMethod {
+    fn settings(&self) -> &AuthenticationType {
+        &self.settings
+    }
+
+    fn query_parameters(&self) -> Option<HashMap<String, String>> {
+        None
+    }
+
+    fn endpoint(&self) -> &str {
+        "/api/v1/me"
+    }
+
+    fn required_authentication(&self) -> bool {
+        true
+    }
+
+    fn method(&self) -> Method {
+        Method::GET
+    }
+
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+        None
+    }
+
+    fn domain(&self) -> &str {
+        &self.server_url
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::methods::{APIMethod, StatisticsMethod};
+    use crate::methods::{APIMethod, OwnMethod, StatisticsMethod};
     use reqwest::Method;
 
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
@@ -75,10 +121,25 @@ mod tests {
             password: "supersecret".to_string(),
         })
     }
+
+    #[test]
+    fn test_get_owninfo_values() {
+        let loginsettings = generate_default_settings();
+        let result = OwnMethod {
+            settings: loginsettings,
+            server_url: "https://mydomain.com".to_string(),
+        };
+        assert_eq!(result.endpoint(), "/api/v1/me");
+        assert_eq!(result.method(), Method::GET);
+        assert!(result.required_authentication());
+        assert!(result.query_parameters().is_none());
+        assert!(result.json_payload().is_none());
+    }
+
     #[test]
     fn test_get_statistics_values() {
         let loginsettings = generate_default_settings();
-        let result = StatisticsMethod {
+        let mut result = StatisticsMethod {
             settings: loginsettings,
             server_url: "https://mydomain.com".to_string(),
             refresh: false,
@@ -88,6 +149,20 @@ mod tests {
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_some());
         assert!(result.json_payload().is_none());
-        // TODO test query_parameters
+
+        // Test Json values.
+        let _result = "false".to_string();
+        if let Some(query) = &result.query_parameters() {
+            assert_eq!(query.get("refresh"), Some(&_result));
+        } else {
+            panic!("Impossble to get parameters {:?}", _result);
+        }
+        result.refresh = true;
+        let _result = "true".to_string();
+        if let Some(query) = &result.query_parameters() {
+            assert_eq!(query.get("refresh"), Some(&_result));
+        } else {
+            panic!("Impossble to get parameters {:?}", _result);
+        }
     }
 }
