@@ -30,5 +30,6 @@ mod licenses;
 mod misc;
 mod moderation;
 mod permissions;
+mod restapiutils;
 mod rooms;
 mod teams;
