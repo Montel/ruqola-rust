@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 use crate::rocketchatmessage;
-use serde_json::json;
 use std::ops::Add;
 
 pub fn registration_list(user_id: String, identifier: &mut u64) -> Vec<String> {
