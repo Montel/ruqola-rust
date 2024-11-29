@@ -45,7 +45,7 @@ pub fn generate_inform_typing_status(
     authenticationutils::generate_method(String::from("stream-notify-room"), value, *identifier)
 }
 
-pub fn subscribe(name: String, params: serde_json::Value, identifier: u64) -> String {
+pub fn subscribe(name: String, params: String, identifier: u64) -> String {
     let value = json!(
         {
             "msg": "sub",
@@ -91,7 +91,7 @@ mod tests {
 
     #[test]
     fn test_subscribe() {
-        let value = serde_json::json!("room_id/deleteMessage");
+        let value = String::from("room_id/deleteMessage");
         assert_eq!(
             rocketchatmessage::subscribe(String::from("method_name"), value, 5),
             r#"{"id":"5","msg":"sub","name":"method_name","params":["room_id/deleteMessage",{"args":[],"useCollection":false}]}"#

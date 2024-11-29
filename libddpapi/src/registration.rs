@@ -87,8 +87,7 @@ pub fn registration_list(user_id: String, identifier: &mut u64) -> Vec<String> {
 
 // Normal that identifier is not changed because it changed in method which calls it
 pub fn generate_notification_str(method_name: String, params: String, identifier: u64) -> String {
-    let value = json!(params);
-    rocketchatmessage::subscribe(method_name, value, identifier)
+    rocketchatmessage::subscribe(method_name, params, identifier)
 }
 
 pub fn registration_room_list(room_id: String, identifier: &mut u64) -> Vec<String> {
