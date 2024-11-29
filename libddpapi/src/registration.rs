@@ -21,7 +21,7 @@ pub fn registration_list(user_id: String, identifier: &mut u64) -> Vec<String> {
     list_stream_notify_user.iter().for_each(|v| {
         *identifier = identifier.add(1);
         list.push(generate_notification_str(
-            String::from("stream-notify-logged"),
+            String::from("stream-notify-user"),
             user_id.clone() + &v,
             *identifier,
         ));
@@ -59,6 +59,9 @@ pub fn registration_list(user_id: String, identifier: &mut u64) -> Vec<String> {
         "public-settings-changed",
         "permissions-changed",
         "license",
+        "userData",
+        "banners",
+        "force_logout",
     ];
 
     list_stream_notication_all.iter().for_each(|v| {
