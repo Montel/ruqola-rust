@@ -1,13 +1,15 @@
 /*
- * SPDX-FileCopyrightText: 2023-2024 Laurent Montel <laurent.montel@kdab.com>
- *
- * SPDX-License-Identifier: LGPL-2.0-or-later
- */
+* SPDX-FileCopyrightText: 2023-2024 Laurent Montel <laurent.montel@kdab.com>
+*
+* SPDX-License-Identifier: LGPL-2.0-or-later
+*/
 
 use reqwest::Method;
 use std::collections::HashMap;
 
+use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::base::PayloadValue;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use crate::api::methods::APIMethod;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 
@@ -34,6 +36,13 @@ impl APIMethod for GetTeamsListMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/teams.list"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::TeamsList,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {
@@ -77,6 +86,13 @@ impl Default for GetTeamInfoMethod {
 impl APIMethod for GetTeamInfoMethod {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::TeamsInfo,
+            ..Default::default()
+        }
     }
 
     fn endpoint(&self) -> &str {

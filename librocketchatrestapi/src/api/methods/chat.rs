@@ -3,10 +3,11 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
-use std::collections::HashMap;
-
+use crate::api::methods::base::EndPointInfo;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use async_trait::async_trait;
 use reqwest::Method;
+use std::collections::HashMap;
 
 use crate::api::methods::{base::PayloadValue, APIMethod};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
@@ -45,6 +46,13 @@ impl APIMethod for PostMessageMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/chat.postMessage"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChatPostMessage,
+            ..Default::default()
+        }
     }
 
     fn method(&self) -> Method {
@@ -116,6 +124,13 @@ impl APIMethod for DeleteMessageMethod {
         "/api/v1/chat.delete"
     }
 
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChatDelete,
+            ..Default::default()
+        }
+    }
+
     fn method(&self) -> Method {
         Method::POST
     }
@@ -170,6 +185,13 @@ impl APIMethod for StarMessageMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/chat.starMessage"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChatStarMessage,
+            ..Default::default()
+        }
     }
 
     fn method(&self) -> Method {
@@ -227,6 +249,13 @@ impl APIMethod for UnStarMessageMethod {
         "/api/v1/chat.unStarMessage"
     }
 
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChatUnStarMessage,
+            ..Default::default()
+        }
+    }
+
     fn method(&self) -> Method {
         Method::POST
     }
@@ -280,6 +309,13 @@ impl APIMethod for FollowMessageMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/chat.followMessage"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChatFollowMessage,
+            ..Default::default()
+        }
     }
 
     fn method(&self) -> Method {
@@ -337,6 +373,13 @@ impl APIMethod for IgnoreUserMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/chat.ignoreUser"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChatIgnoreUser,
+            ..Default::default()
+        }
     }
 
     fn method(&self) -> Method {
@@ -400,6 +443,13 @@ impl APIMethod for SnippetedMessagesMethod {
 
     fn method(&self) -> Method {
         Method::GET
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChatGetSnippetedMessages,
+            ..Default::default()
+        }
     }
 
     fn domain(&self) -> &str {

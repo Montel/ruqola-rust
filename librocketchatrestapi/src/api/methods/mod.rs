@@ -21,6 +21,7 @@ pub use moderation::{
     GetModerationDismissUserReports, GetModerationReportInfo, GetModerationReports,
 };
 pub use permissions::PermissionsListAllMethod;
+pub use restapiutils::{RestApiUrlExtensionType, RestApiUrlType};
 mod base;
 mod channels;
 mod chat;

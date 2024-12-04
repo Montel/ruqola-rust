@@ -5,6 +5,8 @@
  */
 use std::collections::HashMap;
 
+use crate::api::methods::base::EndPointInfo;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use reqwest::Method;
 
 use crate::api::methods::base::PayloadValue;
@@ -33,6 +35,12 @@ impl APIMethod for PermissionsListAllMethod {
         None
     }
 
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::PermissionsListAll,
+            ..Default::default()
+        }
+    }
     fn endpoint(&self) -> &str {
         "/api/v1/permissions.listAll"
     }

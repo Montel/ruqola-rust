@@ -4,11 +4,12 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-use reqwest::Method;
-use std::collections::HashMap;
-
+use crate::api::methods::base::EndPointInfo;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use crate::api::methods::{base::PayloadValue, APIMethod};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
+use reqwest::Method;
+use std::collections::HashMap;
 
 /// Implement LicensesIsEnterprise
 pub struct LicensesIsEnterpriseMethod {
@@ -32,6 +33,13 @@ impl APIMethod for LicensesIsEnterpriseMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/licenses.isEnterprise"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::LicensesIsEntreprise,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {
@@ -77,6 +85,13 @@ impl APIMethod for LicensesListMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/licenses.get"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::LicensesGet,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {

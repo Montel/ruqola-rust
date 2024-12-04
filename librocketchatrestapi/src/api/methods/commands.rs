@@ -4,12 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-use reqwest::Method;
-use std::collections::HashMap;
-
+use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::base::PayloadValue;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use crate::api::methods::APIMethod;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
+use reqwest::Method;
+use std::collections::HashMap;
 
 /// Implement GetCommands
 pub struct GetCommandsMethod {
@@ -33,6 +34,13 @@ impl APIMethod for GetCommandsMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/commands.get"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::CommandsGet,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {
@@ -78,6 +86,13 @@ impl APIMethod for GetListCommandsMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/commands.list"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::CommandsList,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {

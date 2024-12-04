@@ -5,6 +5,8 @@
 */
 use std::collections::HashMap;
 
+use crate::api::methods::base::EndPointInfo;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use reqwest::Method;
 
 use crate::api::methods::base::PayloadValue;
@@ -37,6 +39,13 @@ impl APIMethod for InviteListMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/listInvites"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ListInvites,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {
@@ -85,6 +94,13 @@ impl APIMethod for SendInvitationEmailMethod<'_> {
 
     fn endpoint(&self) -> &str {
         "/api/v1/sendInvitationEmail"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::SendInvitationEmails,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {

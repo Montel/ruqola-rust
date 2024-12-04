@@ -13,6 +13,8 @@ use reqwest::{Client, Method, Response};
 use serde::ser::SerializeSeq;
 use serde::{Deserialize, Serialize, Serializer};
 
+use super::restapiutils;
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AuthData {
@@ -23,6 +25,23 @@ pub struct AuthData {
 #[derive(Debug, Deserialize)]
 struct LoginResult {
     pub data: AuthData,
+}
+
+#[derive(Debug)]
+pub struct EndPointInfo {
+    pub url_extension: String,
+    pub endpoint_type: restapiutils::RestApiUrlType,
+    pub extension_type: restapiutils::RestApiUrlExtensionType,
+}
+
+impl Default for EndPointInfo {
+    fn default() -> EndPointInfo {
+        EndPointInfo {
+            url_extension: String::from(""),
+            endpoint_type: restapiutils::RestApiUrlType::Unknown,
+            extension_type: restapiutils::RestApiUrlExtensionType::V1,
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -60,6 +79,8 @@ pub trait APIMethod {
     fn json_payload(&self) -> Option<HashMap<String, PayloadValue>>;
     fn query_parameters(&self) -> Option<HashMap<String, String>>;
     fn domain(&self) -> &str;
+
+    fn endpointinfo(&self) -> EndPointInfo;
 
     fn build_endpoint(&self, uri: &str) -> Result<String, Error> {
         if self.domain().is_empty() {

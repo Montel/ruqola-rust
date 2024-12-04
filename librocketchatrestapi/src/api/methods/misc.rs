@@ -4,11 +4,12 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-use reqwest::Method;
-use std::collections::HashMap;
-
+use crate::api::methods::base::EndPointInfo;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use crate::api::methods::{base::PayloadValue, APIMethod};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
+use reqwest::Method;
+use std::collections::HashMap;
 
 // Statistic method
 pub struct StatisticsMethod {
@@ -44,6 +45,13 @@ impl APIMethod for StatisticsMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/statistics"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::Statistics,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {
@@ -89,6 +97,12 @@ impl APIMethod for OwnMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/me"
+    }
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::Me,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {

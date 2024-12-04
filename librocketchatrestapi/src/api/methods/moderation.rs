@@ -4,11 +4,12 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-use reqwest::Method;
-use std::collections::HashMap;
-
+use crate::api::methods::base::EndPointInfo;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use crate::api::methods::{base::PayloadValue, APIMethod};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
+use reqwest::Method;
+use std::collections::HashMap;
 /// Implement GetModerationReportInfo
 pub struct GetModerationReportInfo {
     pub settings: AuthenticationType,
@@ -33,6 +34,13 @@ impl APIMethod for GetModerationReportInfo {
 
     fn endpoint(&self) -> &str {
         "/api/v1/moderation.reportInfo"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ModerationReportInfo,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {
@@ -84,6 +92,13 @@ impl APIMethod for GetModerationReports {
         "/api/v1/moderation.reports"
     }
 
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ModerationReports,
+            ..Default::default()
+        }
+    }
+
     fn required_authentication(&self) -> bool {
         true
     }
@@ -131,6 +146,13 @@ impl APIMethod for GetModerationDismissUserReports {
 
     fn endpoint(&self) -> &str {
         "/api/v1/moderation.dismissUserReports"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ModerationDismissUserReports,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {

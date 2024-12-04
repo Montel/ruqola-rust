@@ -5,11 +5,12 @@
  */
 use std::collections::HashMap;
 
-use reqwest::Method;
-
+use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::base::PayloadValue;
+use crate::api::methods::restapiutils::RestApiUrlType;
 use crate::api::methods::APIMethod;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
+use reqwest::Method;
 pub struct ChannelCreateMethod {
     pub settings: AuthenticationType,
     pub server_url: String,
@@ -46,6 +47,13 @@ impl APIMethod for ChannelCreateMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/channels.create"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChannelsCreate,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {
@@ -105,6 +113,13 @@ impl APIMethod for ChannelRemoveModeratorJob {
         "/api/v1/channels.removeModerator"
     }
 
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChannelsRemoveModerator,
+            ..Default::default()
+        }
+    }
+
     fn domain(&self) -> &str {
         &self.server_url
     }
@@ -157,6 +172,13 @@ impl APIMethod for ChannelRemoveLeaderMethod {
 
     fn query_parameters(&self) -> Option<HashMap<String, String>> {
         None
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ChannelsRemoveLeader,
+            ..Default::default()
+        }
     }
 
     fn endpoint(&self) -> &str {

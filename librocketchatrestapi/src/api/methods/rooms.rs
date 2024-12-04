@@ -5,6 +5,9 @@
  */
 use std::collections::HashMap;
 
+use crate::api::methods::base::EndPointInfo;
+use crate::api::methods::restapiutils::RestApiUrlType;
+
 use reqwest::Method;
 
 use crate::api::methods::base::PayloadValue;
@@ -34,6 +37,12 @@ impl APIMethod for GetRoomsMethod {
         "/api/v1/rooms.get"
     }
 
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::RoomsGet,
+            ..Default::default()
+        }
+    }
     fn required_authentication(&self) -> bool {
         true
     }
@@ -79,6 +88,13 @@ impl APIMethod for GetDiscussionsMethod {
 
     fn endpoint(&self) -> &str {
         "/api/v1/rooms.getDiscussions"
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::RoomsGetDiscussions,
+            ..Default::default()
+        }
     }
 
     fn required_authentication(&self) -> bool {
@@ -130,6 +146,13 @@ impl APIMethod for GetRoomInfoMethod {
         "/api/v1/rooms.info"
     }
 
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::RoomsInfo,
+            ..Default::default()
+        }
+    }
+
     fn required_authentication(&self) -> bool {
         true
     }
@@ -174,6 +197,13 @@ impl Default for ChangeRoomFavoriteMethod {
 impl APIMethod for ChangeRoomFavoriteMethod {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::RoomsFavorite,
+            ..Default::default()
+        }
     }
 
     fn endpoint(&self) -> &str {
