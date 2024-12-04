@@ -4,6 +4,19 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+fn adapt_url(url: String) -> String {
+    if url.is_empty() {
+        return url;
+    }
+    // Avoid to add more https:// :)
+    if url.starts_with("https://") || url.starts_with("http://") {
+        url
+    } else {
+        let new_url = String::from("https://") + &url;
+        new_url
+    }
+}
+
 fn generateUrl(
     serverUrl: String,
     restApiUrlType: RestApiUrlType,
