@@ -17,7 +17,7 @@ fn adapt_url(url: String) -> String {
     }
 }
 
-fn generateUrl(
+fn generate_url(
     serverUrl: String,
     restApiUrlType: RestApiUrlType,
     restApiUrlExtensionType: RestApiUrlExtensionType,
@@ -26,12 +26,12 @@ fn generateUrl(
     if serverUrl.is_empty() {
         return String::from("");
     }
-    let mut urlStr =
+    let mut url_str =
         adapt_url(serverUrl) + &restApiUrlExtensionType.path() + &restApiUrlType.path();
     if !urlExtension.is_empty() {
-        urlStr = urlStr + &urlExtension;
+        url_str = url_str + &urlExtension;
     }
-    urlStr
+    url_str
 }
 
 #[derive(Debug)]
