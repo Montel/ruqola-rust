@@ -768,6 +768,7 @@ impl RestApiUrlType {
 
 #[cfg(test)]
 mod tests {
+    use crate::methods::restapiutils::generate_url;
     use crate::methods::restapiutils::RestApiUrlExtensionType;
     use crate::methods::restapiutils::RestApiUrlType;
 
@@ -1454,6 +1455,19 @@ mod tests {
         assert_eq!(
             RestApiUrlType::UsersSendWelcomeEmail.path(),
             "users.sendWelcomeEmail"
+        );
+    }
+
+    #[test]
+    fn test_generate_url() {
+        assert_eq!(
+            generate_url(
+                String::from("http://www.kde.org"),
+                RestApiUrlType::ChannelsList,
+                RestApiUrlExtensionType::V1,
+                String::from("")
+            ),
+            "http://www.kde.org/api/v1/channels.list"
         );
     }
 }
