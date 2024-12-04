@@ -21,19 +21,17 @@ fn generateUrl(
     serverUrl: String,
     restApiUrlType: RestApiUrlType,
     restApiUrlExtensionType: RestApiUrlExtensionType,
+    urlExtension: String,
 ) -> String {
     if serverUrl.is_empty() {
         return String::from("");
     }
-    /*
-        String urlStr =
-        adaptUrl(serverUrl) + restApiUrlExtensionType.path + type.name;
-    if (urlExtension.isNotEmpty) {
-      urlStr += '/$urlExtension';
+    let mut urlStr =
+        adapt_url(serverUrl) + &restApiUrlExtensionType.path() + &restApiUrlType.path();
+    if !urlExtension.is_empty() {
+        urlStr = urlStr + &urlExtension;
     }
-    */
-
-    String::from("")
+    urlStr
 }
 
 #[derive(Debug)]
