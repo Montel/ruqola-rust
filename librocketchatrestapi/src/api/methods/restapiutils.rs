@@ -12,24 +12,23 @@ fn adapt_url(url: String) -> String {
     if url.starts_with("https://") || url.starts_with("http://") {
         url
     } else {
-        let new_url = String::from("https://") + &url;
-        new_url
+        String::from("https://") + &url
     }
 }
 
 pub fn generate_url(
-    serverUrl: String,
-    restApiUrlType: RestApiUrlType,
-    restApiUrlExtensionType: RestApiUrlExtensionType,
-    urlExtension: String,
+    server_url: String,
+    rest_api_url_type: RestApiUrlType,
+    rest_api_url_extension_type: RestApiUrlExtensionType,
+    url_extension: String,
 ) -> String {
-    if serverUrl.is_empty() {
+    if server_url.is_empty() {
         return String::from("");
     }
     let mut url_str =
-        adapt_url(serverUrl) + &restApiUrlExtensionType.path() + &restApiUrlType.path();
-    if !urlExtension.is_empty() {
-        url_str = url_str + &urlExtension;
+        adapt_url(server_url) + &rest_api_url_extension_type.path() + &rest_api_url_type.path();
+    if !url_extension.is_empty() {
+        url_str = url_str + &url_extension;
     }
     url_str
 }
