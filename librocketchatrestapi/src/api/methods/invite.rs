@@ -37,10 +37,6 @@ impl APIMethod for InviteListMethod {
         None
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/listInvites"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::ListInvites,
@@ -92,10 +88,6 @@ impl APIMethod for SendInvitationEmailMethod<'_> {
         None
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/sendInvitationEmail"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::SendInvitationEmails,
@@ -145,7 +137,6 @@ mod tests {
             settings: loginsettings,
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/listInvites");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
@@ -159,7 +150,6 @@ mod tests {
             server_url: "https://mydomain.com".to_string(),
             emails: vec!["foo@kde.org", "bla@kde.org"],
         };
-        assert_eq!(result.endpoint(), "/api/v1/sendInvitationEmail");
         assert_eq!(result.method(), Method::POST);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());

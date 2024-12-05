@@ -43,10 +43,6 @@ impl APIMethod for StatisticsMethod {
         Some(payload)
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/statistics"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::Statistics,
@@ -95,9 +91,6 @@ impl APIMethod for OwnMethod {
         None
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/me"
-    }
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::Me,
@@ -143,7 +136,6 @@ mod tests {
             settings: loginsettings,
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/me");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
@@ -158,7 +150,6 @@ mod tests {
             server_url: "https://mydomain.com".to_string(),
             refresh: false,
         };
-        assert_eq!(result.endpoint(), "/api/v1/statistics");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_some());

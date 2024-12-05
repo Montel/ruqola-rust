@@ -33,10 +33,6 @@ impl APIMethod for GetRoomsMethod {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/rooms.get"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::RoomsGet,
@@ -84,10 +80,6 @@ impl Default for GetDiscussionsMethod {
 impl APIMethod for GetDiscussionsMethod {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
-    }
-
-    fn endpoint(&self) -> &str {
-        "/api/v1/rooms.getDiscussions"
     }
 
     fn endpointinfo(&self) -> EndPointInfo {
@@ -140,10 +132,6 @@ impl Default for GetRoomInfoMethod {
 impl APIMethod for GetRoomInfoMethod {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
-    }
-
-    fn endpoint(&self) -> &str {
-        "/api/v1/rooms.info"
     }
 
     fn endpointinfo(&self) -> EndPointInfo {
@@ -206,10 +194,6 @@ impl APIMethod for ChangeRoomFavoriteMethod {
         }
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/rooms.favorite"
-    }
-
     fn required_authentication(&self) -> bool {
         true
     }
@@ -258,7 +242,6 @@ mod tests {
             settings: generate_default_settings(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/rooms.get");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
@@ -272,7 +255,6 @@ mod tests {
             room_id: "foo".to_string(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/rooms.getDiscussions");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         // Test Json values.
@@ -293,7 +275,6 @@ mod tests {
             favorite: true,
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/rooms.favorite");
         assert_eq!(result.method(), Method::POST);
         assert!(result.required_authentication());
 
@@ -316,7 +297,6 @@ mod tests {
             favorite: false,
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/rooms.favorite");
         assert_eq!(result.method(), Method::POST);
         assert!(result.required_authentication());
 

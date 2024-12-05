@@ -44,10 +44,6 @@ impl APIMethod for PostMessageMethod {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/chat.postMessage"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::ChatPostMessage,
@@ -120,10 +116,6 @@ impl APIMethod for DeleteMessageMethod {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/chat.delete"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::ChatDelete,
@@ -181,10 +173,6 @@ impl Default for StarMessageMethod {
 impl APIMethod for StarMessageMethod {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
-    }
-
-    fn endpoint(&self) -> &str {
-        "/api/v1/chat.starMessage"
     }
 
     fn endpointinfo(&self) -> EndPointInfo {
@@ -245,10 +233,6 @@ impl APIMethod for UnStarMessageMethod {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/chat.unStarMessage"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::ChatUnStarMessage,
@@ -305,10 +289,6 @@ impl Default for FollowMessageMethod {
 impl APIMethod for FollowMessageMethod {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
-    }
-
-    fn endpoint(&self) -> &str {
-        "/api/v1/chat.followMessage"
     }
 
     fn endpointinfo(&self) -> EndPointInfo {
@@ -371,10 +351,6 @@ impl APIMethod for IgnoreUserMethod {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/chat.ignoreUser"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::ChatIgnoreUser,
@@ -435,10 +411,6 @@ impl Default for SnippetedMessagesMethod {
 impl APIMethod for SnippetedMessagesMethod {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
-    }
-
-    fn endpoint(&self) -> &str {
-        "/api/v1/chat.getSnippetedMessages"
     }
 
     fn method(&self) -> Method {

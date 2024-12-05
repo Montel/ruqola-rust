@@ -34,10 +34,6 @@ impl APIMethod for GetTeamsListMethod {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/teams.list"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::TeamsList,
@@ -95,10 +91,6 @@ impl APIMethod for GetTeamInfoMethod {
         }
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/teams.info"
-    }
-
     fn required_authentication(&self) -> bool {
         true
     }
@@ -141,7 +133,6 @@ mod tests {
             server_url: "https://www.kde.org".to_string(),
             team_id: "foo".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/teams.info");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
 
@@ -162,7 +153,6 @@ mod tests {
             settings: loginsettings,
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/teams.list");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());

@@ -45,10 +45,6 @@ impl APIMethod for ChannelCreateMethod {
         None
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/channels.create"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::ChannelsCreate,
@@ -107,10 +103,6 @@ impl APIMethod for ChannelRemoveModeratorJob {
 
     fn query_parameters(&self) -> Option<HashMap<String, String>> {
         None
-    }
-
-    fn endpoint(&self) -> &str {
-        "/api/v1/channels.removeModerator"
     }
 
     fn endpointinfo(&self) -> EndPointInfo {
@@ -181,10 +173,6 @@ impl APIMethod for ChannelRemoveLeaderMethod {
         }
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/channels.removeLeader"
-    }
-
     fn required_authentication(&self) -> bool {
         true
     }
@@ -227,7 +215,6 @@ mod tests {
             members: Some(vec!["rocket.cat".to_string()]),
             ..Default::default()
         };
-        assert_eq!(result.endpoint(), "/api/v1/channels.create");
         assert_eq!(result.method(), Method::POST);
         assert!(result.required_authentication());
 
@@ -254,7 +241,6 @@ mod tests {
             channel_id: "channel id1".to_string(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/channels.removeLeader");
         assert_eq!(result.method(), Method::POST);
         assert!(result.required_authentication());
 
@@ -281,7 +267,6 @@ mod tests {
             channel_id: "channel id1".to_string(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/channels.removeModerator");
         assert_eq!(result.method(), Method::POST);
         assert!(result.required_authentication());
 

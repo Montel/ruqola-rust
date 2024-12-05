@@ -32,10 +32,6 @@ impl APIMethod for GetModerationReportInfo {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/moderation.reportInfo"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::ModerationReportInfo,
@@ -86,10 +82,6 @@ impl Default for GetModerationReports {
 impl APIMethod for GetModerationReports {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
-    }
-
-    fn endpoint(&self) -> &str {
-        "/api/v1/moderation.reports"
     }
 
     fn endpointinfo(&self) -> EndPointInfo {
@@ -144,10 +136,6 @@ impl APIMethod for GetModerationDismissUserReports {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/moderation.dismissUserReports"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::ModerationDismissUserReports,
@@ -199,7 +187,6 @@ mod tests {
             report_id: "foo".to_string(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/moderation.reportInfo");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
 
@@ -220,7 +207,6 @@ mod tests {
             message_id: "foo".to_string(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/moderation.reports");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
 
@@ -241,7 +227,6 @@ mod tests {
             user_id: "bla".to_string(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/moderation.dismissUserReports");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
 

@@ -32,10 +32,6 @@ impl APIMethod for GetCommandsMethod {
         &self.settings
     }
 
-    fn endpoint(&self) -> &str {
-        "/api/v1/commands.get"
-    }
-
     fn endpointinfo(&self) -> EndPointInfo {
         EndPointInfo {
             endpoint_type: RestApiUrlType::CommandsGet,
@@ -82,10 +78,6 @@ impl Default for GetListCommandsMethod {
 impl APIMethod for GetListCommandsMethod {
     fn settings(&self) -> &AuthenticationType {
         &self.settings
-    }
-
-    fn endpoint(&self) -> &str {
-        "/api/v1/commands.list"
     }
 
     fn endpointinfo(&self) -> EndPointInfo {
@@ -136,7 +128,6 @@ mod tests {
             settings: generate_default_settings(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/commands.get");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
@@ -149,7 +140,6 @@ mod tests {
             settings: generate_default_settings(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/commands.list");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());

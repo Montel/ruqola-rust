@@ -41,9 +41,6 @@ impl APIMethod for PermissionsListAllMethod {
             ..Default::default()
         }
     }
-    fn endpoint(&self) -> &str {
-        "/api/v1/permissions.listAll"
-    }
 
     fn required_authentication(&self) -> bool {
         true
@@ -81,7 +78,6 @@ mod tests {
             settings: generate_default_settings(),
             server_url: "https://mydomain.com".to_string(),
         };
-        assert_eq!(result.endpoint(), "/api/v1/permissions.listAll");
         assert_eq!(result.method(), Method::GET);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());

@@ -17,7 +17,7 @@ fn adapt_url(url: String) -> String {
     }
 }
 
-fn generate_url(
+pub fn generate_url(
     serverUrl: String,
     restApiUrlType: RestApiUrlType,
     restApiUrlExtensionType: RestApiUrlExtensionType,

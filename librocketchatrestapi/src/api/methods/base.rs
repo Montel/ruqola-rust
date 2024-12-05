@@ -13,7 +13,7 @@ use reqwest::{Client, Method, Response};
 use serde::ser::SerializeSeq;
 use serde::{Deserialize, Serialize, Serializer};
 
-use super::restapiutils;
+use super::restapiutils::{self, generate_url};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -73,7 +73,6 @@ impl Serialize for PayloadValue<'_> {
 #[async_trait]
 pub trait APIMethod {
     fn settings(&self) -> &AuthenticationType;
-    fn endpoint(&self) -> &str;
     fn method(&self) -> Method;
     fn required_authentication(&self) -> bool;
     fn json_payload(&self) -> Option<HashMap<String, PayloadValue>>;
@@ -82,11 +81,18 @@ pub trait APIMethod {
 
     fn endpointinfo(&self) -> EndPointInfo;
 
-    fn build_endpoint(&self, uri: &str) -> Result<String, Error> {
+    fn build_endpoint(&self) -> Result<String, Error> {
         if self.domain().is_empty() {
             return Err(Error::MissingSettings);
         }
-        Ok(format!("{}{}", self.domain(), uri))
+        let endpointinfo = self.endpointinfo();
+        let result = generate_url(
+            self.domain().to_string(),
+            endpointinfo.endpoint_type,
+            endpointinfo.extension_type,
+            endpointinfo.url_extension,
+        );
+        Ok(result)
     }
 
     // trunk-ignore(clippy/private_in_public)
@@ -148,7 +154,7 @@ pub trait APIMethod {
     async fn login(&self, username: &str, password: &str) -> Result<AuthData, Error> {
         let response = self
             .request(
-                self.build_endpoint("/api/v1/login")?,
+                self.build_endpoint()?,
                 Method::POST,
                 Some(&self.login_payload(username, password)),
                 None,
@@ -190,7 +196,7 @@ pub trait APIMethod {
 
         let response = self
             .request(
-                self.build_endpoint(self.endpoint())?,
+                self.build_endpoint()?,
                 self.method(),
                 self.json_payload().as_ref(),
                 Some(auth_data),
