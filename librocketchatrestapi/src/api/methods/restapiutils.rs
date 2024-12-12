@@ -52,7 +52,8 @@ impl RestApiUrlExtensionType {
 
 #[derive(Debug)]
 pub enum RestApiUrlType {
-    Unknown = -1,
+    Unknown = -2,
+    Empty = -1,
     Login = 0,
     Logout = 1,
     Me = 2,
@@ -417,6 +418,7 @@ impl RestApiUrlType {
     fn path(&self) -> String {
         match self {
             RestApiUrlType::Unknown => "".to_string(),
+            RestApiUrlType::Empty => "".to_string(),
             RestApiUrlType::Login => "login".to_string(),
             RestApiUrlType::Logout => "logout".to_string(),
             RestApiUrlType::Me => "me".to_string(),
@@ -781,6 +783,8 @@ mod tests {
     }
     #[test]
     fn test_verify_enum_restapiurltype() {
+        assert_eq!(RestApiUrlType::Empty.path(), "");
+
         assert_eq!(RestApiUrlType::BannersDismiss.path(), "banners.dismiss");
         assert_eq!(RestApiUrlType::Login.path(), "login");
         assert_eq!(RestApiUrlType::Logout.path(), "logout");
@@ -1461,6 +1465,16 @@ mod tests {
 
     #[test]
     fn test_generate_url() {
+        assert_eq!(
+            generate_url(
+                String::from("http://www.kde.org"),
+                RestApiUrlType::Empty,
+                RestApiUrlExtensionType::Apps,
+                String::from("boo-fla/logs")
+            ),
+            "http://www.kde.org/api/apps/boo-fla/logs"
+        );
+
         assert_eq!(
             generate_url(
                 String::from("http://www.kde.org"),
