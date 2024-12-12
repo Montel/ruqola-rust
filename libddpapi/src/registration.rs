@@ -8,8 +8,6 @@ use std::ops::Add;
 
 pub fn registration_list(user_id: String, identifier: &mut u64) -> Vec<String> {
     let mut list = Vec::<String>::new();
-    // TODO fix identifier
-
     let list_stream_notify_user = [
         "/notification",
         "/rooms-changed",
