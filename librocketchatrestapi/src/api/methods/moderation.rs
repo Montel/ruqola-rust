@@ -10,6 +10,7 @@ use crate::api::methods::{base::PayloadValue, APIMethod};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 use reqwest::Method;
 use std::collections::HashMap;
+
 /// Implement GetModerationReportInfo
 pub struct GetModerationReportInfo {
     pub settings: AuthenticationType,

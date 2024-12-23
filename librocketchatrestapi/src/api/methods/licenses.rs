@@ -130,6 +130,7 @@ mod tests {
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
         assert!(result.json_payload().is_none());
+        asseet!(result.endpointinfo().endpoint_type, RestApiUrlType::LicensesGet);
     }
 
     #[test]
