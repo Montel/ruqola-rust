@@ -17,9 +17,7 @@ pub struct CommandInfo {
 impl CommandInfo {
     pub fn new() -> Self {
         CommandInfo {
-            command: String::default(),
-            params: String::default(),
-            description: String::default(),
+            ..Default::default()
         }
     }
 }
