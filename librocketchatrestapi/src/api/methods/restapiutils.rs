@@ -50,6 +50,7 @@ impl RestApiUrlExtensionType {
     }
 }
 
+#[derive(PartialEq)]
 #[derive(Debug)]
 pub enum RestApiUrlType {
     Unknown = -2,

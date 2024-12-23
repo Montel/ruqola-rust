@@ -110,6 +110,7 @@ impl APIMethod for LicensesListMethod {
 mod tests {
     use crate::methods::{APIMethod, LicensesIsEnterpriseMethod, LicensesListMethod};
     use reqwest::Method;
+    use crate::api::methods::restapiutils::RestApiUrlType;
 
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
 
@@ -130,7 +131,7 @@ mod tests {
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
         assert!(result.json_payload().is_none());
-        asseet!(result.endpointinfo().endpoint_type, RestApiUrlType::LicensesGet);
+        assert_eq!(result.endpointinfo().endpoint_type, RestApiUrlType::LicensesIsEntreprise);
     }
 
     #[test]
