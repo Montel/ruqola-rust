@@ -412,6 +412,9 @@ pub enum RestApiUrlType {
 
     // users.sendWelcomeEmail
     UsersSendWelcomeEmail = 278,
+
+    // Rooms.images
+    RoomsImages = 279,
 }
 
 impl RestApiUrlType {
@@ -765,6 +768,7 @@ impl RestApiUrlType {
             RestApiUrlType::UsersListByStatus => "users.listByStatus".to_string(),
 
             RestApiUrlType::UsersSendWelcomeEmail => "users.sendWelcomeEmail".to_string(),
+            RestApiUrlType::RoomsImages => "rooms.images".to_string(),
         }
     }
 }
@@ -4020,6 +4024,16 @@ mod tests {
                 String::from("")
             ),
             ("http://www.kde.org/api/v1/users.sendWelcomeEmail")
+        );
+
+        assert_eq!(
+            generate_url(
+                String::from("http://www.kde.org"),
+                RestApiUrlType::RoomsImages,
+                RestApiUrlExtensionType::V1,
+                String::from("")
+            ),
+            ("http://www.kde.org/api/v1/rooms.images")
         );
     }
 }
