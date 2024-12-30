@@ -18,6 +18,7 @@ pub mod invitations;
 pub mod languages;
 pub mod messageinfo;
 pub mod messages;
+pub mod ownuserpreferences;
 pub mod permission;
 pub mod permissionaccesstokeninfo;
 pub mod permissionaccesstokeninfos;
