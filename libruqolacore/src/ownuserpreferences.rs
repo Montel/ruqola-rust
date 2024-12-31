@@ -6,8 +6,9 @@
 
 use serde::Deserialize;
 
-#[derive(Clone, Deserialize, Debug, PartialEq)]
+#[derive(Clone, Deserialize, Debug, PartialEq, Default)]
 pub enum RoomListSortOrder {
+    #[default]
     Unknown,
     #[serde(alias = "activity")]
     ByLastMessage,
@@ -15,8 +16,9 @@ pub enum RoomListSortOrder {
     Alphabetically,
 }
 
-#[derive(Clone, Deserialize, Debug, PartialEq)]
+#[derive(Clone, Deserialize, Debug, PartialEq, Default)]
 pub enum RoomListDisplay {
+    #[default]
     Unknown,
     #[serde(alias = "condensed")]
     Condensed,
