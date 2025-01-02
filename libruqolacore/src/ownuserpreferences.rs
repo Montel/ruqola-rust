@@ -36,17 +36,18 @@ pub struct OwnUserPreferences {
     pub email_notification_mode: String,
     #[serde(rename = "desktopNotifications")]
     pub desktop_notifications: String,
+    #[serde(default)]
     #[serde(rename = "pushNotifications")]
     pub push_notifications: String,
     #[serde(rename = "newMessageNotification")]
     pub new_message_notification: String,
     #[serde(rename = "newRoomNotification")]
     pub new_room_notification: String,
-    /*
-    //TODO
-    RoomListSortOrder mRoomListSortOrder = RoomListSortOrder::Unknown;
-    RoomListDisplay mRoomListDisplay = RoomListDisplay::Unknown;
-    */
+    #[serde(rename = "sidebarSortby")]
+    pub room_list_sort_order: RoomListSortOrder,
+    #[serde(rename = "sidebarViewMode")]
+    pub room_list_display: RoomListDisplay,
+
     #[serde(rename = "idleTimeLimit")]
     pub idle_time_limit: i64, // -1 TOTO
     #[serde(rename = "notificationsSoundVolume")]
@@ -80,5 +81,22 @@ impl OwnUserPreferences {
 
 #[cfg(test)]
 mod tests {
-    use crate::ownuserpreferences;
+    use crate::ownuserpreferences::OwnUserPreferences;
+    use std::fs::File;
+
+    // Using by test
+    pub fn parse(filename: &str) -> OwnUserPreferences {
+        let file = File::open(filename).expect("Failed to open file");
+        serde_json::from_reader(file).expect("JSON was not well-formatted")
+    }
+
+    #[test]
+    fn test_parsing() {
+        {
+            // Load file
+            let preferences = parse("src/data/ownuserpreferences/ownuserpreferences1.json");
+            //assert_eq!(permission.update.len(), 1147);
+            //assert_eq!(permission.remove.len(), 0);
+        }
+    }
 }
