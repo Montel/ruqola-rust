@@ -56,6 +56,9 @@ pub struct Room {
     pub favorite: bool,
     #[serde(default)] // Return false by default
     pub open: bool,
+
+    #[serde(default)] // Return false by default
+    pub was_initialized: bool,
 }
 
 fn roomtype_unknown() -> RoomType {
@@ -73,21 +76,7 @@ fn convert_str_to_room_type(val: &str) -> RoomType {
 impl Room {
     pub fn new() -> Self {
         Room {
-            room_id: String::default(),
-            description: String::default(),
-            announcement: String::default(),
-            topic: String::default(),
-            channel_type: RoomType::Unknown,
-            unread: 0,
-            name: String::default(),
-            fname: String::default(),
-            archived: false,
-            blocker: false,
-            blocked: false,
-            messages: Messages::default(),
-            read_only: false,
-            favorite: false,
-            open: false,
+            ..Default::default()
         }
     }
 
