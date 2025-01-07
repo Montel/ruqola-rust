@@ -117,6 +117,59 @@ impl APIMethod for SendInvitationEmailMethod<'_> {
     }
 }
 
+// ValidateInviteToken
+
+pub struct ValidateInviteTokenMethod {
+    pub settings: AuthenticationType,
+    pub server_url: String,
+    pub token: String,
+}
+
+impl Default for ValidateInviteTokenMethod {
+    fn default() -> Self {
+        ValidateInviteTokenMethod {
+            settings: AuthenticationType::None,
+            server_url: String::default(),
+            token: String::default(),
+        }
+    }
+}
+
+impl APIMethod for ValidateInviteTokenMethod {
+    fn settings(&self) -> &AuthenticationType {
+        &self.settings
+    }
+
+    fn query_parameters(&self) -> Option<HashMap<String, String>> {
+        None
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::ValidateInviteToken,
+            ..Default::default()
+        }
+    }
+
+    fn required_authentication(&self) -> bool {
+        false
+    }
+
+    fn method(&self) -> Method {
+        Method::POST
+    }
+
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+        let mut payload: HashMap<String, PayloadValue> = HashMap::new();
+        payload.insert("token".to_string(), PayloadValue::String(&self.token));
+        Some(payload)
+    }
+
+    fn domain(&self) -> &str {
+        &self.server_url
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::methods::{APIMethod, InviteListMethod, SendInvitationEmailMethod};
