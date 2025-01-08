@@ -9,10 +9,10 @@ Lib used by libddpapi and librocketchatrestapi for identification.
 Lib which uses websocket for connecting to RC
 
 ## librocketchatrestapi  
-Lib which implement REST API.
+Lib which implements REST API.
 
 ## libruqolacore  
-// TODO
+Lib which implements parsing json from RC server etc.
 
 ## ruqola-rust-cxx-qt  
 Future UI writes in cxx-qt
