@@ -170,6 +170,57 @@ impl APIMethod for ValidateInviteTokenMethod {
     }
 }
 
+// Remove Invite
+pub struct RemoveInviteMethod {
+    pub settings: AuthenticationType,
+    pub server_url: String,
+    pub identifier: String,
+}
+
+impl Default for RemoveInviteMethod {
+    fn default() -> Self {
+        RemoveInviteMethod {
+            settings: AuthenticationType::None,
+            server_url: String::default(),
+            identifier: String::default(),
+        }
+    }
+}
+
+impl APIMethod for RemoveInviteMethod {
+    fn settings(&self) -> &AuthenticationType {
+        &self.settings
+    }
+
+    fn query_parameters(&self) -> Option<HashMap<String, String>> {
+        None
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::RemoveInvite,
+            url_extension: self.identifier.clone(),
+            ..Default::default()
+        }
+    }
+
+    fn required_authentication(&self) -> bool {
+        true
+    }
+
+    fn method(&self) -> Method {
+        Method::DELETE
+    }
+
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+        None
+    }
+
+    fn domain(&self) -> &str {
+        &self.server_url
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::methods::{APIMethod, InviteListMethod, SendInvitationEmailMethod};
