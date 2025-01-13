@@ -108,9 +108,59 @@ impl APIMethod for GetListCommandsMethod {
     }
 }
 
+// RunCommand
+pub struct RunCommandsMethod {
+    pub settings: AuthenticationType,
+    pub server_url: String,
+    // TODO add parameters
+}
+
+impl Default for RunCommandsMethod {
+    fn default() -> Self {
+        RunCommandsMethod {
+            settings: AuthenticationType::None,
+            server_url: String::new(),
+        }
+    }
+}
+
+impl APIMethod for RunCommandsMethod {
+    fn settings(&self) -> &AuthenticationType {
+        &self.settings
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: RestApiUrlType::CommandsRun,
+            ..Default::default()
+        }
+    }
+
+    fn required_authentication(&self) -> bool {
+        true
+    }
+
+    fn query_parameters(&self) -> Option<HashMap<String, String>> {
+        None
+    }
+
+    fn method(&self) -> Method {
+        Method::POST
+    }
+
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+        // TODO
+        None
+    }
+
+    fn domain(&self) -> &str {
+        &self.server_url
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::methods::{APIMethod, GetCommandsMethod, GetListCommandsMethod};
+    use crate::methods::{APIMethod, GetCommandsMethod, GetListCommandsMethod, RunCommandsMethod};
     use reqwest::Method;
 
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};

@@ -11,7 +11,7 @@ pub use chat::{
 };
 pub use rooms::{ChangeRoomFavoriteMethod, GetDiscussionsMethod, GetRoomsMethod};
 
-pub use commands::{GetCommandsMethod, GetListCommandsMethod};
+pub use commands::{GetCommandsMethod, GetListCommandsMethod, RunCommandsMethod};
 pub use invite::{InviteListMethod, SendInvitationEmailMethod, ValidateInviteTokenMethod};
 pub use teams::{GetTeamInfoMethod, GetTeamsListMethod};
 
