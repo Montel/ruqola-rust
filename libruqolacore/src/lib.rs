@@ -16,6 +16,7 @@ pub mod fileattachments;
 pub mod invitation;
 pub mod invitations;
 pub mod languages;
+pub mod message;
 pub mod messageattachmentfield;
 pub mod messageinfo;
 pub mod messages;
