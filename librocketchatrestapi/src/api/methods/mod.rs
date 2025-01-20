@@ -6,8 +6,8 @@
 pub use base::{APIMethod, PayloadValue};
 pub use channels::{ChannelCreateMethod, ChannelRemoveLeaderMethod, ChannelRemoveModeratorJob};
 pub use chat::{
-    DeleteMessageMethod, FollowMessageMethod, IgnoreUserMethod, PostMessageMethod,
-    SnippetedMessagesMethod, StarMessageMethod, UnStarMessageMethod,
+    DeleteMessageMethod, FollowMessageMethod, IgnoreUserMethod, PinMessageMethod,
+    PostMessageMethod, SnippetedMessagesMethod, StarMessageMethod, UnStarMessageMethod,
 };
 pub use rooms::{ChangeRoomFavoriteMethod, GetDiscussionsMethod, GetRoomsMethod};
 

@@ -442,3 +442,96 @@ impl APIMethod for SnippetedMessagesMethod {
         None
     }
 }
+
+//StarMessageMethod
+#[derive(Debug)]
+pub struct PinMessageMethod {
+    pub settings: AuthenticationType,
+    pub server_url: String,
+
+    pub message_id: String,
+    pub pin_message: bool,
+}
+
+impl Default for PinMessageMethod {
+    fn default() -> Self {
+        PinMessageMethod {
+            settings: AuthenticationType::None,
+            message_id: String::default(),
+            server_url: String::new(),
+            pin_message: true,
+        }
+    }
+}
+
+#[async_trait]
+impl APIMethod for PinMessageMethod {
+    fn settings(&self) -> &AuthenticationType {
+        &self.settings
+    }
+
+    fn endpointinfo(&self) -> EndPointInfo {
+        EndPointInfo {
+            endpoint_type: if self.pin_message {
+                RestApiUrlType::ChatPinMessage
+            } else {
+                RestApiUrlType::ChatUnPinMessage
+            },
+            ..Default::default()
+        }
+    }
+
+    fn method(&self) -> Method {
+        Method::POST
+    }
+
+    fn query_parameters(&self) -> Option<HashMap<String, String>> {
+        None
+    }
+
+    fn domain(&self) -> &str {
+        &self.server_url
+    }
+
+    fn required_authentication(&self) -> bool {
+        true
+    }
+
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+        let mut payload: HashMap<String, PayloadValue> = HashMap::new();
+        payload.insert(
+            "messageId".to_string(),
+            PayloadValue::String(&self.message_id),
+        );
+        Some(payload)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::methods::{APIMethod, PinMessageMethod};
+    use reqwest::Method;
+
+    use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
+
+    pub fn generate_default_settings() -> AuthenticationType {
+        AuthenticationType::Login(LoginSettings {
+            username: "chuck_norris".to_string(),
+            password: "supersecret".to_string(),
+        })
+    }
+    #[test]
+    fn test_get_commands_values() {
+        let result = PinMessageMethod {
+            settings: generate_default_settings(),
+            server_url: "https://mydomain.com".to_string(),
+            message_id: "messageId".to_string(),
+            pin_message: false,
+        };
+        assert_eq!(result.method(), Method::POST);
+        assert!(result.required_authentication());
+        assert!(result.query_parameters().is_none());
+        // TODO fixme
+        assert!(result.json_payload().is_none());
+    }
+}

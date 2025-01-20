@@ -112,7 +112,7 @@ impl APIMethod for GetListCommandsMethod {
 pub struct RunCommandsMethod {
     pub settings: AuthenticationType,
     pub server_url: String,
-    // TODO add parameters
+    // FIXME add parameters
 }
 
 impl Default for RunCommandsMethod {
@@ -191,6 +191,18 @@ mod tests {
             server_url: "https://mydomain.com".to_string(),
         };
         assert_eq!(result.method(), Method::GET);
+        assert!(result.required_authentication());
+        assert!(result.query_parameters().is_none());
+        assert!(result.json_payload().is_none());
+    }
+
+    #[test]
+    fn test_run_commands_values() {
+        let result = RunCommandsMethod {
+            settings: generate_default_settings(),
+            server_url: "https://mydomain.com".to_string(),
+        };
+        assert_eq!(result.method(), Method::POST);
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
         assert!(result.json_payload().is_none());
