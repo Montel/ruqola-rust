@@ -82,6 +82,17 @@ pub fn registration_list(user_id: String, identifier: &mut u64) -> Vec<String> {
         ));
     });
 
+    let list_stream_apps = ["apps"];
+
+    list_stream_apps.iter().for_each(|v| {
+        *identifier = identifier.add(1);
+        list.push(generate_notification_str(
+            String::from("stream-apps"),
+            v.to_string(),
+            *identifier,
+        ));
+    });
+
     list
 }
 
