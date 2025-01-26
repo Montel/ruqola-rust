@@ -13,6 +13,7 @@ pub enum NotificationType {
     StandardMessage,
     ConferenceCall,
 }
+// TODO implement display for enum
 
 pub struct NotificationInfo {
     pub mMessageId: String,
@@ -27,6 +28,7 @@ pub struct NotificationInfo {
     pub mChannelType: String,
     pub mTmId: String,
     pub mDateTime: String,
+    pub mNotificationType: NotificationType,
 }
 
 /*
@@ -36,8 +38,8 @@ impl fmt::Display for NotificationInfo {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "(message identifier: {}, accountName: {}, message: {}, title: {}, senderId: {}, senderName: {}, senderUserName: {}, roomName: {}, roomId: {}, channelType: {}, mTmId: {}, mDateTime: {})",
-            self.mMessageId, self.mAccountName, self.mMessage, self.mTitle, self.mSenderId, self.mSenderName, self.mSenderUserName, self.mRoomName, self.mRoomId, self.mChannelType, self.mTmId, self.mDateTime  
+            "(message identifier: {}, accountName: {}, message: {}, title: {}, senderId: {}, senderName: {}, senderUserName: {}, roomName: {}, roomId: {}, channelType: {}, mTmId: {}, mDateTime: {}, mNotificationType: {:?})",
+            self.mMessageId, self.mAccountName, self.mMessage, self.mTitle, self.mSenderId, self.mSenderName, self.mSenderUserName, self.mRoomName, self.mRoomId, self.mChannelType, self.mTmId, self.mDateTime, self.mNotificationType  
         )
     }
 }
