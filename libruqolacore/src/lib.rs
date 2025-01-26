@@ -20,6 +20,7 @@ pub mod message;
 pub mod messageattachmentfield;
 pub mod messageinfo;
 pub mod messages;
+pub mod notificationinfo;
 pub mod ownuserpreferences;
 pub mod permission;
 pub mod permissionaccesstokeninfo;
