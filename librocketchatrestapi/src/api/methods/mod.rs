@@ -31,6 +31,7 @@ mod licenses;
 mod misc;
 mod moderation;
 mod permissions;
+mod personalaccesstoken;
 mod restapiutils;
 mod rooms;
 mod teams;

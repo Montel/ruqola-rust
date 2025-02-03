@@ -18,6 +18,7 @@ pub struct File {
     #[serde(rename = "type")]
     pub mime_type: String,
     pub url: String,
+    pub path: String,
     #[serde(rename = "typeGroup")]
     pub type_group: String,
     #[serde(rename = "_id")]
@@ -36,8 +37,8 @@ impl File {
 
 impl fmt::Display for File {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "(userId {}, description {}, name {}, mimetype {}, url {}, type_group {}, identifier {})"
-         , self.user_id, self.description, self.file_name, self.mime_type, self.url, self.type_group, self.file_identifier)
+        write!(f, "(userId {}, description {}, name {}, mimetype {}, url {}, type_group {}, identifier {}, path {})"
+         , self.user_id, self.description, self.file_name, self.mime_type, self.url, self.type_group, self.file_identifier, self.path)
     }
 }
 
@@ -55,5 +56,6 @@ mod tests {
         assert!(b.url.is_empty());
         assert!(b.type_group.is_empty());
         assert!(b.file_identifier.is_empty());
+        assert!(b.path.is_empty());
     }
 }
