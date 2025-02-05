@@ -770,6 +770,7 @@ impl RestApiUrlType {
 
             RestApiUrlType::UsersSendWelcomeEmail => "users.sendWelcomeEmail".to_string(),
             RestApiUrlType::RoomsImages => "rooms.images".to_string(),
+            // RC 7.3.0
             RestApiUrlType::RoomsMembersOrderedByRole => "rooms.membersOrderedByRole".to_string(),
         }
     }
