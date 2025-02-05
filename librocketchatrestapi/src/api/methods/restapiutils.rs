@@ -415,6 +415,7 @@ pub enum RestApiUrlType {
 
     // Rooms.images
     RoomsImages = 279,
+    RoomsMembersOrderedByRole = 280,
 }
 
 impl RestApiUrlType {
@@ -769,6 +770,7 @@ impl RestApiUrlType {
 
             RestApiUrlType::UsersSendWelcomeEmail => "users.sendWelcomeEmail".to_string(),
             RestApiUrlType::RoomsImages => "rooms.images".to_string(),
+            RestApiUrlType::RoomsMembersOrderedByRole => "rooms.membersOrderedByRole".to_string(),
         }
     }
 }
@@ -4034,6 +4036,16 @@ mod tests {
                 String::from("")
             ),
             ("http://www.kde.org/api/v1/rooms.images")
+        );
+
+        assert_eq!(
+            generate_url(
+                String::from("http://www.kde.org"),
+                RestApiUrlType::RoomsMembersOrderedByRole,
+                RestApiUrlExtensionType::V1,
+                String::from("")
+            ),
+            ("http://www.kde.org/api/v1/rooms.membersOrderedByRole")
         );
     }
 }
