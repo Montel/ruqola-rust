@@ -21,7 +21,7 @@ pub enum PasswordSettingCheck {
    const PasswordSettingCheck(this.value);
  }
  */
-
+#[derive(Clone, Debug, PartialEq)]
 pub struct RuqolaServerConfigPassword {
     pub accounts_password_policy_min_length: i64,
     pub accounts_password_policy_max_length: i64,
