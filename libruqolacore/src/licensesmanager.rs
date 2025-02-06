@@ -21,6 +21,29 @@ impl LicensesManager {
             licenses: Vec::<String>::default(),
         }
     }
+    pub fn has_license(&self, name: String) -> bool {
+        self.licenses.contains(&name)
+    }
 }
 
 // TODO add test
+#[cfg(test)]
+mod tests {
+    use crate::licensesmanager::LicensesManager;
+    #[test]
+    fn test_default_values() {
+        let r = LicensesManager::new();
+        assert!(r.licenses.is_empty());
+    }
+
+    #[test]
+    fn test_contains_license() {
+        let mut r = LicensesManager::new();
+        r.licenses.push("dd".to_string());
+        r.licenses.push("license2".to_string());
+
+        assert!(!r.licenses.is_empty());
+        assert!(r.licenses.len() == 2);
+        assert!(r.has_license(""));
+    }
+}
