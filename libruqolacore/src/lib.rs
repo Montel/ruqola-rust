@@ -32,4 +32,5 @@ pub mod rocketchataccountsettings;
 pub mod rocketchatbackend;
 pub mod room;
 pub mod rooms;
+pub mod ruqolaserverconfigpassword;
 pub mod user;
