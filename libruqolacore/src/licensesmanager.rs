@@ -44,6 +44,7 @@ mod tests {
 
         assert!(!r.licenses.is_empty());
         assert!(r.licenses.len() == 2);
-        assert!(r.has_license(""));
+        assert!(r.has_license(String::from("dd")));
+        assert!(!r.has_license(String::from("dd2")));
     }
 }
