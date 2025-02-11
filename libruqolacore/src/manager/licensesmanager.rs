@@ -29,7 +29,7 @@ impl LicensesManager {
 // TODO add test
 #[cfg(test)]
 mod tests {
-    use crate::licensesmanager::LicensesManager;
+    use crate::manager::licensesmanager::LicensesManager;
     #[test]
     fn test_default_values() {
         let r = LicensesManager::new();

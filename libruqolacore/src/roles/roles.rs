@@ -8,7 +8,7 @@ pub struct Roles {}
 
 #[cfg(test)]
 mod tests {
-    use crate::roles::Roles;
+    use crate::roles::roles::Roles;
     #[test]
     fn test_default_values() {
         // TODO
