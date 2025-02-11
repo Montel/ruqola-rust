@@ -421,6 +421,7 @@ pub enum RestApiUrlType {
     E2ERejectSuggestedGroupKey = 282,
     E2EProvideUsersWithSuggestedGroupKeys = 283,
     E2EResetRoomKey = 284,
+    E2EFetchUsersWaitingForGroupKey = 285,
 }
 
 impl RestApiUrlType {
@@ -633,6 +634,9 @@ impl RestApiUrlType {
                 "e2e.provideUsersWithSuggestedGroupKeys".to_string()
             }
             RestApiUrlType::E2EResetRoomKey => "e2e.resetRoomKey".to_string(),
+            RestApiUrlType::E2EFetchUsersWaitingForGroupKey => {
+                "e2e.provideUsersSuggestedGroupKeys".to_string()
+            }
 
             RestApiUrlType::RolesList => "roles.list".to_string(),
             RestApiUrlType::RolesCreate => "roles.create".to_string(),
@@ -3050,6 +3054,16 @@ mod tests {
             ),
             ("http://www.kde.org/api/v1/e2e.setUserPublicAndPrivateKeys")
         );
+        assert_eq!(
+            generate_url(
+                String::from("http://www.kde.org"),
+                RestApiUrlType::E2EFetchUsersWaitingForGroupKey,
+                RestApiUrlExtensionType::V1,
+                String::from("")
+            ),
+            ("http://www.kde.org/api/v1/e2e.provideUsersSuggestedGroupKeys")
+        );
+
         assert_eq!(
             generate_url(
                 String::from("http://www.kde.org"),
