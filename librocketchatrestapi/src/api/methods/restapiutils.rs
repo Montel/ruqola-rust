@@ -416,6 +416,11 @@ pub enum RestApiUrlType {
     // Rooms.images
     RoomsImages = 279,
     RoomsMembersOrderedByRole = 280,
+
+    E2EAcceptSuggestedGroupKey = 281,
+    E2ERejectSuggestedGroupKey = 282,
+    E2EProvideUsersWithSuggestedGroupKeys = 283,
+    E2EResetRoomKey = 284,
 }
 
 impl RestApiUrlType {
@@ -622,6 +627,12 @@ impl RestApiUrlType {
             }
             RestApiUrlType::E2ERequestSubscriptionKeys => "e2e.requestSubscriptionKeys".to_string(),
             RestApiUrlType::E2EResetOwnE2EKey => "e2e.resetOwnE2EKey".to_string(),
+            RestApiUrlType::E2EAcceptSuggestedGroupKey => "e2e.acceptSuggestedGroupKey".to_string(),
+            RestApiUrlType::E2ERejectSuggestedGroupKey => "e2e.rejectSuggestedGroupKey".to_string(),
+            RestApiUrlType::E2EProvideUsersWithSuggestedGroupKeys => {
+                "e2e.provideUsersWithSuggestedGroupKeys".to_string()
+            }
+            RestApiUrlType::E2EResetRoomKey => "e2e.resetRoomKey".to_string(),
 
             RestApiUrlType::RolesList => "roles.list".to_string(),
             RestApiUrlType::RolesCreate => "roles.create".to_string(),
@@ -1168,6 +1179,20 @@ mod tests {
             RestApiUrlType::E2EResetOwnE2EKey.path(),
             "e2e.resetOwnE2EKey"
         );
+
+        assert_eq!(
+            RestApiUrlType::E2EAcceptSuggestedGroupKey.path(),
+            "e2e.acceptSuggestedGroupKey"
+        );
+        assert_eq!(
+            RestApiUrlType::E2ERejectSuggestedGroupKey.path(),
+            "e2e.rejectSuggestedGroupKey"
+        );
+        assert_eq!(
+            RestApiUrlType::E2EProvideUsersWithSuggestedGroupKeys.path(),
+            "e2e.provideUsersWithSuggestedGroupKeys"
+        );
+        assert_eq!(RestApiUrlType::E2EResetRoomKey.path(), "e2e.resetRoomKey");
 
         assert_eq!(RestApiUrlType::RolesList.path(), "roles.list");
         assert_eq!(RestApiUrlType::RolesCreate.path(), "roles.create");
