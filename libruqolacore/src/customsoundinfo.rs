@@ -32,8 +32,7 @@ impl CustomSoundInfo {
 }
 
 /*
-Debug output for DeviceInfo
-TODO verify it
+Debug output for CustomSoundInfo
 */
 impl fmt::Display for CustomSoundInfo {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

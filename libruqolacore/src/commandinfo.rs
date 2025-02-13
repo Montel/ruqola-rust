@@ -23,7 +23,7 @@ impl CommandInfo {
 }
 
 /*
-Debug output for DeviceInfo
+Debug output for CommandInfo
 TODO verify it
 */
 impl fmt::Display for CommandInfo {
