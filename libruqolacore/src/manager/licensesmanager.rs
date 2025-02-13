@@ -24,6 +24,7 @@ impl LicensesManager {
     pub fn has_license(&self, name: String) -> bool {
         self.licenses.contains(&name)
     }
+    // TODO parse it !
 }
 
 // TODO add test
