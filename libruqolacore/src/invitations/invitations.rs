@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-use crate::invitation::Invitation;
+use crate::invitations::invitation::Invitation;
 use serde::Deserialize;
 
 #[derive(Clone, Deserialize, Debug, PartialEq)]
@@ -35,7 +35,7 @@ impl Invitations {
 mod tests {
     use std::fs::File;
 
-    use crate::invitations::Invitations;
+    use crate::invitations::invitations::Invitations;
 
     // For test !
     pub fn parse(filename: &str) -> Invitations {

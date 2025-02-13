@@ -13,7 +13,6 @@ pub mod customsoundinfo;
 pub mod deviceinfo;
 pub mod file;
 pub mod fileattachments;
-pub mod invitation;
 pub mod invitations;
 pub mod languages;
 pub mod manager;

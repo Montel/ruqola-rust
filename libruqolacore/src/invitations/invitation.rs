@@ -61,7 +61,7 @@ impl fmt::Display for Invitation {
 
 #[cfg(test)]
 mod tests {
-    use crate::invitation::Invitation;
+    use crate::invitations::invitation::Invitation;
     use std::fs::File;
 
     // Using by test
