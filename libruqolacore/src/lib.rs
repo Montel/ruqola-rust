@@ -34,4 +34,5 @@ pub mod roles;
 pub mod room;
 pub mod rooms;
 pub mod ruqolaserverconfigpassword;
+pub mod teams;
 pub mod user;
