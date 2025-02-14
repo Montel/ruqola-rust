@@ -5,12 +5,12 @@
  */
 
 enum AttachmentType {
-  unknown,
-  normalText,
-  file,
-  video,
-  audio,
-  image,
+    Unknown,
+    NormalText,
+    File,
+    Video,
+    Audio,
+    Image,
 }
 
 /*
