@@ -16,19 +16,19 @@ pub enum NotificationType {
 // TODO implement display for enum
 
 pub struct NotificationInfo {
-    pub mMessageId: String,
-    pub mAccountName: String,
-    pub mMessage: String,
-    pub mTitle: String,
-    pub mSenderId: String,
-    pub mSenderName: String,
-    pub mSenderUserName: String,
-    pub mRoomName: String,
-    pub mRoomId: String,
-    pub mChannelType: String,
-    pub mTmId: String,
-    pub mDateTime: String,
-    pub mNotificationType: NotificationType,
+    pub message_id: String,
+    pub account_name: String,
+    pub message: String,
+    pub title: String,
+    pub sender_id: String,
+    pub sender_name: String,
+    pub sender_user_name: String,
+    pub room_name: String,
+    pub room_id: String,
+    pub channel_type: String,
+    pub tm_id: String,
+    pub date_time: String,
+    pub notification_type: NotificationType,
 }
 
 /*
@@ -39,7 +39,7 @@ impl fmt::Display for NotificationInfo {
         write!(
             f,
             "(message identifier: {}, accountName: {}, message: {}, title: {}, senderId: {}, senderName: {}, senderUserName: {}, roomName: {}, roomId: {}, channelType: {}, mTmId: {}, mDateTime: {}, mNotificationType: {:?})",
-            self.mMessageId, self.mAccountName, self.mMessage, self.mTitle, self.mSenderId, self.mSenderName, self.mSenderUserName, self.mRoomName, self.mRoomId, self.mChannelType, self.mTmId, self.mDateTime, self.mNotificationType  
+            self.message_id, self.account_name, self.message, self.title, self.sender_id, self.sender_name, self.sender_user_name, self.room_name, self.room_id, self.channel_type, self.tm_id, self.date_time, self.notification_type  
         )
     }
 }
