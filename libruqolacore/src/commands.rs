@@ -12,6 +12,10 @@ use serde::Deserialize;
 #[serde(default)]
 pub struct Commands {
     pub commands: Vec<CommandInfo>,
+    #[serde(rename = "count")]
+    pub commands_count: i64,
+    pub offset: i64,
+    pub total: i64,
 }
 
 impl Default for Commands {
@@ -24,6 +28,9 @@ impl Commands {
     pub fn new() -> Self {
         Commands {
             commands: Vec::<CommandInfo>::default(),
+            offset: 0,
+            total: 0,
+            commands_count: 0,
         }
     }
 
@@ -56,12 +63,17 @@ mod tests {
             let commands = result.commands;
             assert!(!commands.is_empty());
             assert_eq!(commands.len(), 25);
+            assert_eq!(result.offset, 0);
+            assert_eq!(result.commands_count, 25);
         }
         {
             // Load file
             let result = parse("src/data/commands/command1.json");
-
-            assert!(result.commands.is_empty());
+            let commands = result.commands;
+            assert!(commands.is_empty());
+            assert_eq!(commands.len(), 0);
+            assert_eq!(result.offset, 0);
+            assert_eq!(result.commands_count, 0);
         }
         {
             // Load file
@@ -69,6 +81,8 @@ mod tests {
             let commands = result.commands;
             assert!(!commands.is_empty());
             assert_eq!(commands.len(), 3);
+            assert_eq!(result.offset, 0);
+            assert_eq!(result.commands_count, 3);
         }
     }
 }
