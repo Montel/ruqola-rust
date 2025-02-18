@@ -26,6 +26,7 @@ pub mod permission;
 pub mod permissionaccesstokeninfo;
 pub mod permissionaccesstokeninfos;
 pub mod permissions;
+pub mod reaction;
 pub mod retentioninfo;
 pub mod rocketchataccount;
 pub mod rocketchataccountmanager;
