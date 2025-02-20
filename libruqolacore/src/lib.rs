@@ -5,6 +5,7 @@
  */
 #[macro_use]
 extern crate lazy_static;
+pub mod avatarinfo;
 pub mod bannerinfo;
 pub mod bannerinfos;
 pub mod commandinfo;
