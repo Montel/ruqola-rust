@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+use std::fmt;
+
 use serde::Deserialize;
 #[derive(Clone, Deserialize, Debug, PartialEq)]
 pub struct Replies {
@@ -19,6 +21,15 @@ impl Replies {
         Replies {
             replies: Vec::new(),
         }
+    }
+}
+
+/*
+Debug output for Replies
+*/
+impl fmt::Display for Replies {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Replies(replies: {:?})", self.replies)
     }
 }
 
