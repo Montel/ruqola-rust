@@ -48,7 +48,7 @@ impl fmt::Display for MessageAttachmentField {
 
 #[cfg(test)]
 mod tests {
-    use crate::messageattachmentfield::MessageAttachmentField;
+    use crate::message::messageattachmentfield::MessageAttachmentField;
 
     #[test]
     fn test_is_empty() {

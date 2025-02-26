@@ -3,4 +3,8 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
+mod channelinfo;
 mod messageattachment;
+mod messageattachmentfield;
+mod reaction;
+mod replies;

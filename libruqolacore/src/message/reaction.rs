@@ -9,6 +9,7 @@ use serde::Deserialize;
 #[derive(Clone, Deserialize, Debug, PartialEq)]
 pub struct Reaction {
     pub reaction_name: String,
+    #[serde(rename = "usernames")]
     pub user_names: Vec<String>,
 }
 
@@ -55,7 +56,7 @@ impl Reaction {
 
 #[cfg(test)]
 mod tests {
-    use crate::reaction::Reaction;
+    use crate::message::reaction::Reaction;
 
     #[test]
     fn test_tooltip() {
