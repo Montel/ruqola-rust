@@ -12,12 +12,20 @@ pub struct CommandInfo {
     pub command: String,
     pub params: String,
     pub description: String,
+    #[serde(rename = "clientOnly")]
+    pub client_only: bool,
+    #[serde(rename = "providesPreview")]
+    pub provides_preview: bool,
 }
 
 impl CommandInfo {
     pub fn new() -> Self {
         CommandInfo {
-            ..Default::default()
+            command: String::new(),
+            params: String::new(),
+            description: String::new(),
+            client_only: false,
+            provides_preview: false,
         }
     }
 }
@@ -51,5 +59,7 @@ mod tests {
         assert!(command_info.command.is_empty());
         assert!(command_info.params.is_empty());
         assert!(command_info.description.is_empty());
+        assert!(!command_info.client_only);
+        assert!(!command_info.provides_preview);
     }
 }
