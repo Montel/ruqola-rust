@@ -40,7 +40,7 @@ impl fmt::Display for MessageAttachmentField {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "(AttachmentField title: {}, value: {})",
+            "AttachmentField(title: {}, value: {})",
             self.title, self.value
         )
     }

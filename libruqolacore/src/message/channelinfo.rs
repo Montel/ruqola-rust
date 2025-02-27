@@ -30,7 +30,7 @@ impl fmt::Display for ChannelInfo {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "ChannelInfo fname: {}, name: {}, identifier {})",
+            "ChannelInfo(fname: {}, name: {}, identifier {})",
             self.fname, self.name, self.identifier
         )
     }
