@@ -15,12 +15,17 @@ pub fn registration_list(user_id: String, identifier: &mut u64) -> Vec<String> {
         "/otr",
         "/message",
         "/subscriptions-changed",
+        "/video-conference",
+        "/userData",
+        "/banners",
+        "/force_logout",
+        "/uiInteraction",
     ];
     list_stream_notify_user.iter().for_each(|v| {
         *identifier = identifier.add(1);
         list.push(generate_notification_str(
             String::from("stream-notify-user"),
-            user_id.clone() + &v,
+            user_id.clone() + v,
             *identifier,
         ));
     });
