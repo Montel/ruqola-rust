@@ -9,6 +9,7 @@ pub mod avatarinfo;
 pub mod bannerinfo;
 pub mod bannerinfos;
 pub mod commandinfo;
+pub mod commandpreview;
 pub mod commands;
 pub mod customsoundinfo;
 pub mod deviceinfo;

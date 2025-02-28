@@ -38,7 +38,7 @@ impl fmt::Display for CommandInfo {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "CommandInfo command: {}, params: {}, description {})",
+            "CommandInfo(command: {}, params: {}, description {})",
             self.command, self.params, self.description
         )
     }
