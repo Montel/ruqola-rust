@@ -7,6 +7,17 @@
 use serde::Deserialize;
 use std::fmt;
 
+// TODO
+#[derive(Clone, Deserialize, Debug)]
+enum TypePreview {
+    Unknown,
+    Image,
+    Video,
+    Audio,
+    Text,
+    Other,
+}
+
 #[derive(Clone, Default, Deserialize, Debug)]
 pub struct CommandPreview {
     pub id: String,
