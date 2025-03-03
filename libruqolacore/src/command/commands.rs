@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-use crate::commandinfo::CommandInfo;
+use crate::command::commandinfo::CommandInfo;
 use serde::Deserialize;
 
 #[allow(non_snake_case)]
@@ -43,7 +43,7 @@ impl Commands {
 
 #[cfg(test)]
 mod tests {
-    use crate::commands::Commands;
+    use crate::command::commands::Commands;
     use std::fs::File;
     // For test !
     pub fn parse(filename: &str) -> Commands {

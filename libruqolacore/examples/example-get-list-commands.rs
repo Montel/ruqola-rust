@@ -8,7 +8,7 @@ use config_file::FromConfigFile;
 use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
 use librocketchatrestapi::methods::APIMethod;
 use librocketchatrestapi::methods::GetListCommandsMethod;
-use libruqolacore::commands::Commands;
+use libruqolacore::command::commands::Commands;
 mod helper;
 
 #[tokio::main]

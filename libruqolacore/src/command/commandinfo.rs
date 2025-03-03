@@ -46,7 +46,7 @@ impl fmt::Display for CommandInfo {
 
 #[cfg(test)]
 mod tests {
-    use crate::commandinfo::CommandInfo;
+    use crate::command::commandinfo::CommandInfo;
     use std::fs::File;
 
     pub fn parse(filename: &str) -> CommandInfo {

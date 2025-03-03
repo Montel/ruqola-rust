@@ -3,5 +3,5 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
-mod invitation;
-mod invitations;
+pub mod invitation;
+pub mod invitations;

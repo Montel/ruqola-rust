@@ -3,5 +3,5 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
-mod licensesmanager;
-mod permissionsmanager;
+pub mod licensesmanager;
+pub mod permissionsmanager;
