@@ -5,7 +5,7 @@
  */
 use serde::Deserialize;
 use std::collections::HashMap;
-use std::{default, fmt};
+use std::fmt;
 #[derive(Clone, Default, Deserialize, Debug)]
 pub struct Mentions {
     pub mentions: HashMap<String, String>,
