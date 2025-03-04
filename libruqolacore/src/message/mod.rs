@@ -6,6 +6,7 @@
 mod block;
 mod blockaction;
 mod channelinfo;
+mod mentions;
 mod messageattachment;
 mod messageattachmentfield;
 mod reaction;
