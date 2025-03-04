@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-use serde::Deserialize;
 use std::collections::HashMap;
 #[derive(Clone, Debug)]
 pub struct AppsLanguageInfo {
