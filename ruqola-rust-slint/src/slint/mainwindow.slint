@@ -22,6 +22,26 @@ export { AccountConfigurationDialog }
 export component RuqolaWindow inherits Window {
     title: @tr("Ruqola-Rust");
 
+    // Add menubar
+    MenuBar {
+        Menu {
+            title: @tr("MenuBar" => "File");
+            MenuItem {
+                title: @tr("MenuBar" => "Add Server...");
+                activated => {
+                    // TODO add dialogbox
+                }
+            }
+
+            MenuItem {
+                title: @tr("MenuBar" => "Quit");
+                activated => {
+                    quit();
+                }
+            }
+        }
+    }
+
     callback send_message(string);
     callback show_configure_accounts();
     callback connect_account(int);
