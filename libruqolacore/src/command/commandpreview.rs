@@ -7,15 +7,24 @@
 use serde::Deserialize;
 use std::fmt;
 
-// TODO
-#[derive(Clone, Deserialize, Debug)]
-enum TypePreview {
+#[derive(Default, Clone, Deserialize, Debug, PartialEq)]
+pub enum TypePreview {
+    #[default]
     Unknown,
+    #[serde(alias = "image")]
     Image,
+    #[serde(alias = "video")]
     Video,
+    #[serde(alias = "audio")]
     Audio,
+    #[serde(alias = "text")]
     Text,
+    #[serde(alias = "other")]
     Other,
+}
+
+fn typepreview_unknown() -> TypePreview {
+    TypePreview::Unknown
 }
 
 #[derive(Clone, Default, Deserialize, Debug)]
@@ -23,7 +32,8 @@ pub struct CommandPreview {
     pub id: String,
     pub value: String,
     #[serde(rename = "type")]
-    pub type_preview: String,
+    #[serde(default = "typepreview_unknown")]
+    pub type_preview: TypePreview,
 }
 
 impl CommandPreview {
@@ -31,8 +41,11 @@ impl CommandPreview {
         CommandPreview {
             id: String::new(),
             value: String::new(),
-            type_preview: String::new(),
+            type_preview: TypePreview::Unknown,
         }
+    }
+    pub fn is_valid(&self) -> bool {
+        self.type_preview != TypePreview::Unknown && !self.id.is_empty() && !self.value.is_empty()
     }
 }
 
@@ -43,7 +56,7 @@ impl fmt::Display for CommandPreview {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "CommandPreview( id: {}, value: {}, type_preview {})",
+            "CommandPreview( id: {}, value: {}, type_preview {:?})",
             self.id, self.value, self.type_preview
         )
     }
