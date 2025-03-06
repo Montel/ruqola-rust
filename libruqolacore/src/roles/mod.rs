@@ -3,4 +3,5 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
+pub mod role;
 pub mod roles;

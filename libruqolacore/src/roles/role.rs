@@ -4,7 +4,6 @@
 * SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-// TODO
 #[derive(Clone, Debug, PartialEq)]
 pub struct Role {
     pub user_id: String,
@@ -37,7 +36,7 @@ impl Role {
 
 #[cfg(test)]
 mod tests {
-    use crate::role::Role;
+    use crate::roles::role::Role;
     #[test]
     fn test_default_values() {
         let r = Role::default();
