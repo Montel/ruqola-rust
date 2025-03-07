@@ -119,7 +119,7 @@ pub fn registration_room_list(room_id: String, identifier: &mut u64) -> Vec<Stri
     *identifier = identifier.add(1);
     list_params.iter().for_each(|v| {
         list.push(generate_notification_str(
-            room_id.clone() + "/" + &v,
+            room_id.clone() + "/" + v,
             String::from("stream-notify-room"),
             *identifier,
         ));
