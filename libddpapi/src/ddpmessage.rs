@@ -70,6 +70,7 @@ pub enum ChangeElementType {
     StreamNotifyUserRoomsChanged(serde_json::Value),
     StreamNotifyUserVideoConference(serde_json::Value),
     StreamNotifyUserSubscriptionsChanged(serde_json::Value),
+    StreamNotifyUserUiInteraction(serde_json::Value),
     StreamNotifyUserForceLogout(serde_json::Value),
     StreamNotifyUserUnknown(serde_json::Value),
     StreamNotifyRoomDeleteMessage,
@@ -189,6 +190,8 @@ fn parse_changed_element(json: serde_json::Value) -> ChangeElementType {
             let contents = fields.unwrap()["args"].to_owned();
             if event_name.ends_with("/subscriptions-changed") {
                 ChangeElementType::StreamNotifyUserSubscriptionsChanged(contents)
+            } else if event_name.ends_with("/uiInteraction") {
+                ChangeElementType::StreamNotifyUserUiInteraction(contents)
             } else if event_name.ends_with("/rooms-changed") {
                 ChangeElementType::StreamNotifyUserRoomsChanged(contents)
             } else if event_name.ends_with("/notification") {

@@ -80,6 +80,9 @@ impl RocketChatAccount {
             libddpapi::ddpmessage::ChangeElementType::StreamNotifyUserOtr(value) => {
                 println!("Notification OTR")
             }
+            libddpapi::ddpmessage::ChangeElementType::StreamNotifyUserUiInteraction(value) => {
+                println!("UiInteraction {}", value)
+            }
             libddpapi::ddpmessage::ChangeElementType::StreamNotifyUserNotification(value) => {
                 println!("NOTIFICATION")
             }
