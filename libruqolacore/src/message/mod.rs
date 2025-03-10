@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 mod block;
+mod blockaccessoryoption;
 mod blockaction;
 mod channelinfo;
 mod mentions;
