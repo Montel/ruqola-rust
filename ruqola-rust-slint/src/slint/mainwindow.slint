@@ -4,7 +4,8 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import { Button, LineEdit, StandardListView, StandardButton} from "std-widgets.slint";
+import { Button, LineEdit, StandardListView, StandardButton, AboutSlint} from "std-widgets.slint";
+
 import { MainPage } from "screens/mainpage.slint";
 import { SelectAccountsPage } from "screens/selectaccount.slint";
 
@@ -12,16 +13,24 @@ import { SelectAccountsPage } from "screens/selectaccount.slint";
 import { ScreenController, PageType } from "singletons/screencontroller.slint";
 export { ScreenController, PageType }
 
+import { AboutDialog } from "dialogs/aboutdialog.slint";
+export { AboutDialog }
+
 import { AccountSettingsDialog } from "dialogs/accountsettings.slint";
 export { AccountSettingsDialog }
 
 import { AccountConfigurationDialog } from "dialogs/accountconfiguration.slint";
 export { AccountConfigurationDialog }
 
-
 export component RuqolaWindow inherits Window {
     title: @tr("Ruqola-Rust");
-
+    callback send_message(string);
+    callback show_configure_accounts();
+    callback connect_account(int);
+    callback show_accounts();
+    callback disconnect_account();
+    callback quit();
+    
     // Add menubar
     MenuBar {
         Menu {
@@ -40,14 +49,18 @@ export component RuqolaWindow inherits Window {
                 }
             }
         }
+
+        Menu {
+            title: @tr("MenuBar" => "Help");
+            MenuItem {
+                title: @tr("MenuBar" => "About...");
+                activated => {
+                    about-dialog.show();                 // TODO add dialogbox
+                }
+            }
+        }
     }
 
-    callback send_message(string);
-    callback show_configure_accounts();
-    callback connect_account(int);
-    callback show_accounts();
-    callback disconnect_account();
-    callback quit();
     preferred-width: 700px;
     preferred-height: 500px;
 
@@ -80,5 +93,13 @@ export component RuqolaWindow inherits Window {
             ScreenController.resolved-page-id = PageType.MainPage;
             connect_account(index)
         }
+    }
+
+    about-dialog := PopupWindow {
+        x: 0;
+        y: 0;
+        width: root.height;
+        height: root.height;
+        AboutDialog { }
     }
 }
