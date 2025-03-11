@@ -4,4 +4,41 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-// TODO
+use std::fmt;
+
+use serde::Deserialize;
+
+#[derive(Clone, Deserialize, Debug, PartialEq)]
+pub struct MessagePinned {
+    #[serde(rename = "pinnedBy")]
+    pub pinned_by: String,
+    pub pinned: bool,
+}
+
+impl Default for MessagePinned {
+    fn default() -> Self {
+        MessagePinned::new()
+    }
+}
+
+impl MessagePinned {
+    pub fn new() -> Self {
+        MessagePinned {
+            pinned_by: String::default(),
+            pinned: false,
+        }
+    }
+}
+
+/*
+Debug output for MessageAttachmentField
+*/
+impl fmt::Display for MessagePinned {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "MessagePinned(pinned_by: {}, pinned: {})",
+            self.pinned_by, self.pinned
+        )
+    }
+}

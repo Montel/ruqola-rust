@@ -29,3 +29,14 @@ impl Messages {
         serde_json::from_str(filename).expect("JSON was not well-formatted")
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::messages::Messages;
+
+    #[test]
+    fn test_is_empty() {
+        let b = Messages::new();
+        assert!(b.update.is_empty());
+    }
+}
