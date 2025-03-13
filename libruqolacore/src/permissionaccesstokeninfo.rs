@@ -52,13 +52,6 @@ impl fmt::Display for PermissionAccessTokenInfo {
 #[cfg(test)]
 mod tests {
     use crate::permissionaccesstokeninfo::PermissionAccessTokenInfo;
-    use std::fs::File;
-
-    // Using by test
-    pub fn parse(filename: &str) -> PermissionAccessTokenInfo {
-        let file = File::open(filename).expect("Failed to open file");
-        serde_json::from_reader(file).expect("JSON was not well-formatted")
-    }
 
     #[test]
     fn test_default_value() {
