@@ -13,6 +13,15 @@ enum AttachmentType {
     Image,
 }
 
+pub struct Messageattachment {
+    pub title: String,
+    pub description: String,
+    pub color: String,
+    pub link: String,
+    pub author_name: String,
+    pub mime_type: String,
+}
+
 /*
 class Messageattachment {
   List<MessageAttachmentField>? mAttachmentFields;
