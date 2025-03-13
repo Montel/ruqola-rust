@@ -15,7 +15,6 @@ pub struct PermissionAccessTokenInfo {
     pub name: String,
     #[serde(rename = "bypassTwoFactor")]
     pub bypass_two_factor: bool,
-    // TODO createdAt
     #[serde(rename = "createdAt")]
     pub create_date_time: DateTime<Utc>,
 }
