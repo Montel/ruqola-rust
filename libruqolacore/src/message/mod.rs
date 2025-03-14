@@ -12,5 +12,7 @@ mod mentions;
 mod messageattachment;
 mod messageattachmentfield;
 mod messagepinned;
+mod messagetranslations;
+mod messageurl;
 mod reaction;
 mod replies;
