@@ -13,7 +13,7 @@ enum AttachmentType {
     Image,
 }
 
-pub struct Messageattachment {
+pub struct MessageAttachment {
     pub title: String,
     pub description: String,
     pub color: String,
