@@ -6,7 +6,7 @@
 use serde::Deserialize;
 use std::fmt;
 
-#[derive(Clone, Default, Deserialize, Debug)]
+#[derive(Clone, Default, Deserialize, Debug, PartialEq)]
 pub struct ButtonAction {
     pub text: String,
 }
@@ -28,7 +28,7 @@ impl fmt::Display for ButtonAction {
     }
 }
 
-#[derive(Clone, Default, Deserialize, Debug)]
+#[derive(Clone, Default, Deserialize, Debug, PartialEq)]
 #[serde(default)]
 pub struct BlockAction {
     #[serde(rename = "actionId")]
