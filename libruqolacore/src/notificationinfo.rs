@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-use serde::Deserialize;
 
 use std::fmt;
 #[derive(Default, Clone, Debug, PartialEq)]
