@@ -42,3 +42,15 @@ impl fmt::Display for MessagePinned {
         )
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::message::messagepinned::MessagePinned;
+
+    #[test]
+    fn test_is_empty() {
+        let b = MessagePinned::new();
+        assert!(b.pinned_by.is_empty());
+        assert!(!b.pinned);
+    }
+}

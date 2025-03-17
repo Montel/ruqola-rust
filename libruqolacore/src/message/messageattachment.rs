@@ -3,7 +3,9 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
+use std::fmt;
 
+use serde::Deserialize;
 enum AttachmentType {
     Unknown,
     NormalText,
@@ -13,13 +15,15 @@ enum AttachmentType {
     Image,
 }
 
+#[derive(Clone, Deserialize, Debug, PartialEq)]
 pub struct MessageAttachment {
     pub title: String,
     pub description: String,
     pub color: String,
     pub link: String,
     pub author_name: String,
-    pub mime_type: String,
+    pub author_icon: String,
+    pub image_type: String,
 }
 
 /*

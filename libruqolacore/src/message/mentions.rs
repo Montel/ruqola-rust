@@ -6,6 +6,7 @@
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fmt;
+// TODO verify as "mentions.insert(mention.value("username"_L1).toString(), mention.value("_id"_L1).toString().toLatin1());"
 #[derive(Clone, Default, Deserialize, Debug)]
 pub struct Mentions {
     pub mentions: HashMap<String, String>,
