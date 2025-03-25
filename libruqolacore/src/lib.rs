@@ -11,6 +11,7 @@ pub mod bannerinfos;
 pub mod command;
 pub mod customsoundinfo;
 pub mod deviceinfo;
+pub mod emoticons;
 pub mod file;
 pub mod fileattachments;
 pub mod invitation;
