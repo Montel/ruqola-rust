@@ -16,4 +16,35 @@ pub struct CustomUserStatusModel {
     pub statuses: Vec<CustomUserStatus>,
 }
 
+impl Default for CustomUserStatusModel {
+    fn default() -> Self {
+        CustomUserStatusModel::new()
+    }
+}
+
+impl CustomUserStatusModel {
+    fn new() -> Self {
+        CustomUserStatusModel {
+            custom_user_count: 0,
+            offset: 0,
+            total: 0,
+            statuses: Vec::default(),
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::status::customuserstatusmodel::CustomUserStatusModel;
+
+    #[test]
+    fn test_is_invalid_by_default() {
+        let b: CustomUserStatusModel = CustomUserStatusModel::new();
+
+        assert_eq!(b.total, 0);
+        assert_eq!(b.offset, 0);
+        assert_eq!(b.custom_user_count, 0);
+        assert!(b.statuses.is_empty());
+    }
+}
 // TODO

@@ -49,6 +49,7 @@ impl fmt::Display for DisplayStatusInfo {
 pub struct StatusModel {
     pub list_status: Vec<DisplayStatusInfo>,
 }
+
 impl Default for StatusModel {
     fn default() -> Self {
         StatusModel::new()
@@ -60,6 +61,12 @@ impl StatusModel {
         StatusModel {
             list_status: Vec::default(),
         }
+    }
+
+    fn sorted_list(self) -> Vec<DisplayStatusInfo> {
+        let mut sorted_list = self.list_status.clone();
+        sorted_list.sort_by(|a, b| a.order.cmp(&b.order));
+        sorted_list
     }
 }
 
