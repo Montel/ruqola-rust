@@ -7,9 +7,13 @@ use serde::Deserialize;
 
 #[derive(Clone, Deserialize, Debug)]
 pub struct TeamInfo {
+    #[serde(rename = "teamId")]
     pub team_id: String,
+    #[serde(rename = "roomsCount")]
     pub rooms_count: i64,
+    #[serde(rename = "teamMain")]
     pub main_team: bool,
+    #[serde(rename = "teamDefault")]
     pub auto_join: bool,
 }
 
