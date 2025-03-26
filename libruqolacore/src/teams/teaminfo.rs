@@ -32,6 +32,9 @@ impl TeamInfo {
             auto_join: false,
         }
     }
+    pub fn has_team_room(&self) -> bool {
+        !self.main_team && !self.team_id.is_empty()
+    }
 }
 
 #[cfg(test)]
@@ -45,5 +48,6 @@ mod tests {
         assert!(!b.auto_join);
         assert_eq!(b.rooms_count, 0);
         assert!(b.team_id.is_empty());
+        assert!(!b.has_team_room());
     }
 }
