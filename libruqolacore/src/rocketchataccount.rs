@@ -244,7 +244,7 @@ impl RocketChatAccount {
     }
 
     pub async fn initialize_accounts(&self) {
-        let (sender, mut receiver) = mpsc::unbounded_channel::<CommandToBackend>();
+        let (sender, receiver) = mpsc::unbounded_channel::<CommandToBackend>();
         <RocketChatAccount as Clone>::clone(&self)
             .build(receiver, sender)
             .await;

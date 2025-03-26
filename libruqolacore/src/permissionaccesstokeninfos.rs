@@ -38,8 +38,7 @@ mod tests {
 
     use crate::permissionaccesstokeninfo::PermissionAccessTokenInfo;
     use crate::permissionaccesstokeninfos::PermissionAccessTokenInfos;
-    use chrono::{DateTime, Utc};
-
+    use chrono::{DateTime, TimeZone, Utc};
     // For test !
     pub fn parse(filename: &str) -> PermissionAccessTokenInfos {
         let file = File::open(filename).expect("Failed to open file");
@@ -68,10 +67,11 @@ mod tests {
             i.bypass_two_factor = false;
             i.last_token_part = String::from("I6mHG3");
             i.name = String::from("test1");
-            i.create_date_time = DateTime::<Utc>::from_utc(
-                chrono::NaiveDateTime::from_timestamp_millis(1741856600248).unwrap(),
-                Utc,
-            );
+
+            i.create_date_time = DateTime::from_timestamp_millis(1741856600248)
+                .unwrap()
+                .with_timezone(&Utc);
+
             lst.push(i);
         }
         {
@@ -79,10 +79,10 @@ mod tests {
             i.bypass_two_factor = false;
             i.last_token_part = String::from("ClGA8G");
             i.name = String::from("test2");
-            i.create_date_time = DateTime::<Utc>::from_utc(
-                chrono::NaiveDateTime::from_timestamp_millis(1741856613045).unwrap(),
-                Utc,
-            );
+
+            i.create_date_time = DateTime::from_timestamp_millis(1741856613045)
+                .unwrap()
+                .with_timezone(&Utc);
 
             lst.push(i);
         }
@@ -91,10 +91,9 @@ mod tests {
             i.bypass_two_factor = false;
             i.last_token_part = String::from("eM7RyS");
             i.name = String::from("test3");
-            i.create_date_time = DateTime::<Utc>::from_utc(
-                chrono::NaiveDateTime::from_timestamp_millis(1741856625084).unwrap(),
-                Utc,
-            );
+            i.create_date_time = DateTime::from_timestamp_millis(1741856625084)
+                .unwrap()
+                .with_timezone(&Utc);
 
             lst.push(i);
         }
@@ -103,10 +102,9 @@ mod tests {
             i.bypass_two_factor = true;
             i.last_token_part = String::from("nGVprC");
             i.name = String::from("test4");
-            i.create_date_time = DateTime::<Utc>::from_utc(
-                chrono::NaiveDateTime::from_timestamp_millis(1741856839672).unwrap(),
-                Utc,
-            );
+            i.create_date_time = DateTime::from_timestamp_millis(1741856839672)
+                .unwrap()
+                .with_timezone(&Utc);
             lst.push(i);
         }
         assert_eq!(b.permission_access_token_infos, lst);
