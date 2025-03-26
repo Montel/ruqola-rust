@@ -13,9 +13,9 @@ pub struct CustomEmoji {
     pub identifier: String,
     pub extension: String,
     pub name: String,
+    pub aliases: Vec<String>,
     /*
     String cachedHtml = '';
-    List<String> aliases = [];
     int updatedAt = 0;
     */
 }
@@ -33,6 +33,7 @@ impl CustomEmoji {
             identifier: String::default(),
             extension: String::default(),
             name: String::default(),
+            aliases: Vec::default(),
         }
     }
 }
