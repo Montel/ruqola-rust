@@ -1,3 +1,5 @@
+use std::fmt;
+
 /*
  * SPDX-FileCopyrightText: 2025 Laurent Montel <laurent.montel@kdab.com>
  *
@@ -34,6 +36,19 @@ impl TeamInfo {
     }
     pub fn has_team_room(&self) -> bool {
         !self.main_team && !self.team_id.is_empty()
+    }
+}
+
+/*
+Debug output for TeamInfo
+*/
+impl fmt::Display for TeamInfo {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "TeamInfo(teamId: {}, rooms_count: {}, main_team: {}, auto_join: {})",
+            self.team_id, self.rooms_count, self.main_team, self.auto_join
+        )
     }
 }
 
