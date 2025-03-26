@@ -5,3 +5,4 @@
  */
 
 pub mod teaminfo;
+pub mod teamroom;
