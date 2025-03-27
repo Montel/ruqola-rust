@@ -32,3 +32,17 @@ impl TeamRoom {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::teams::teamroom::TeamRoom;
+
+    #[test]
+    fn test_is_invalid_by_default() {
+        let b = TeamRoom::new();
+        assert!(b.name.is_empty());
+        assert!(b.fname.is_empty());
+        assert!(b.identifier.is_empty());
+        assert!(!b.auto_join);
+    }
+}

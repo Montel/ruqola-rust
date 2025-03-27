@@ -65,4 +65,18 @@ mod tests {
         assert!(b.team_id.is_empty());
         assert!(!b.has_team_room());
     }
+
+    #[test]
+    fn test_verify_has_team_room() {
+        let mut b = TeamInfo::new();
+        assert!(!b.has_team_room());
+        b.main_team = true;
+        b.team_id = String::from("ff");
+        assert!(!b.has_team_room());
+        b.main_team = false;
+        assert!(b.has_team_room());
+
+        b.team_id.clear();
+        assert!(!b.has_team_room());
+    }
 }
