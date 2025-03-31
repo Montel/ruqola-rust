@@ -45,6 +45,8 @@ pub struct User {
     #[serde(rename = "utcOffset")]
     pub utc_offset: f32,
     pub emails: Vec<UserEmailsInfo>,
+    #[serde(rename = "type")]
+    pub user_type: String,
 }
 
 impl Default for User {
@@ -56,17 +58,18 @@ impl Default for User {
 impl User {
     pub fn new() -> Self {
         User {
-            user_id: String::new(),
-            name: String::new(),
-            username: String::new(),
-            status_text: String::new(),
-            bio: String::new(),
-            nick_name: String::new(),
+            user_id: String::default(),
+            name: String::default(),
+            username: String::default(),
+            status_text: String::default(),
+            bio: String::default(),
+            nick_name: String::default(),
             active: false,
             roles: Vec::<String>::default(),
             status: Status::Unknown,
             utc_offset: 0.0,
             emails: Vec::<UserEmailsInfo>::default(),
+            user_type: String::default(),
         }
     }
     pub fn parse_elements(&mut self, json: &str) {
@@ -96,6 +99,7 @@ mod tests {
         assert!(!b.active);
         assert!(b.roles.is_empty());
         assert_eq!(b.utc_offset, 0.0);
+        assert!(b.user_type.is_empty());
     }
 
     #[test]
