@@ -81,7 +81,7 @@ impl OwnUserPreferences {
 
 #[cfg(test)]
 mod tests {
-    use crate::ownuserpreferences::OwnUserPreferences;
+    use crate::ownuser::ownuserpreferences::OwnUserPreferences;
     use std::fs::File;
 
     // Using by test
