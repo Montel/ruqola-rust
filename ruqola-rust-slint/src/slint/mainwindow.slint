@@ -37,10 +37,14 @@ export component RuqolaWindow inherits Window {
             title: @tr("MenuBar" => "File");
             MenuItem {
                 title: @tr("MenuBar" => "Add Server...");
+                enabled: true;
                 activated => {
                     // TODO add dialogbox
                 }
             }
+
+            // It seems that it doesn't show separator
+            MenuSeparator { }
 
             MenuItem {
                 title: @tr("MenuBar" => "Quit");
