@@ -24,6 +24,8 @@ pub struct File {
     #[serde(rename = "_id")]
     /// In rest api we use it.
     pub file_identifier: String,
+    #[serde(rename = "rid")]
+    pub room_id: String,
     // TODO uploadedAt + user
 }
 
@@ -37,8 +39,8 @@ impl File {
 
 impl fmt::Display for File {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "(userId {}, description {}, name {}, mimetype {}, url {}, type_group {}, identifier {}, path {})"
-         , self.user_id, self.description, self.file_name, self.mime_type, self.url, self.type_group, self.file_identifier, self.path)
+        write!(f, "(userId {}, description {}, name {}, mimetype {}, url {}, type_group {}, identifier {}, path {}, rid {})"
+         , self.user_id, self.description, self.file_name, self.mime_type, self.url, self.type_group, self.file_identifier, self.path, self.room_id)
     }
 }
 
@@ -57,5 +59,6 @@ mod tests {
         assert!(b.type_group.is_empty());
         assert!(b.file_identifier.is_empty());
         assert!(b.path.is_empty());
+        assert!(b.room_id.is_empty());
     }
 }
