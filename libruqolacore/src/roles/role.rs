@@ -29,8 +29,13 @@ impl Role {
             is_owner: false,
         }
     }
+
     pub fn is_valid(self) -> bool {
         !self.user_id.is_empty()
+    }
+
+    pub fn has_role(self) -> bool {
+        self.is_moderator || self.is_leader || self.is_owner
     }
 }
 
@@ -47,4 +52,24 @@ mod tests {
         assert!(r.user_name.is_empty());
         assert!(!r.is_valid());
     }
+
+    #[test]
+    fn test_has_role() {
+        let mut r = Role::default();
+        r.user_id = String::from("foo");
+        assert!(!r.clone().has_role());
+        r.is_owner = true;
+        assert!(r.clone().has_role());
+        r.is_leader = true;
+        assert!(r.clone().has_role());
+        r.is_moderator = true;
+        assert!(r.clone().has_role());
+        r.is_owner = false;
+        assert!(r.clone().has_role());
+        r.is_leader = false;
+        assert!(r.clone().has_role());
+        r.is_moderator = false;
+        assert!(!r.clone().has_role());
+    }
+    // TODO add test for is_valid
 }
