@@ -38,7 +38,7 @@ mod tests {
 
     use crate::permissionaccesstokeninfo::PermissionAccessTokenInfo;
     use crate::permissionaccesstokeninfos::PermissionAccessTokenInfos;
-    use chrono::{DateTime, TimeZone, Utc};
+    use chrono::{DateTime, Utc};
     // For test !
     pub fn parse(filename: &str) -> PermissionAccessTokenInfos {
         let file = File::open(filename).expect("Failed to open file");
