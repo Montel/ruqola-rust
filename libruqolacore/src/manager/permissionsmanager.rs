@@ -9,9 +9,9 @@ pub struct PermissionsManager {}
 
 #[cfg(test)]
 mod tests {
-    use crate::manager::permissionsmanager::PermissionsManager;
     // TODO
     /*
+    use crate::manager::permissionsmanager::PermissionsManager;
     #[test]
     fn test_default_values() {
         let r = LicensesManager::new();
