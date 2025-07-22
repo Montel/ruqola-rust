@@ -57,6 +57,11 @@ mod tests {
     #[test]
     fn test_is_empty() {
         let b: RetentionInfo = RetentionInfo::new();
+        assert!(!b.enabled);
+        assert!(!b.override_global);
+        assert!(!b.exclude_pinned);
+        assert!(!b.files_only);
+        assert_eq!(b.max_age, -1);
     }
     #[test]
     fn test_parsing() {
