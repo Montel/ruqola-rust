@@ -3,8 +3,6 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
-use std::fmt;
-
 use serde::Deserialize;
 enum AttachmentType {
     Unknown,
