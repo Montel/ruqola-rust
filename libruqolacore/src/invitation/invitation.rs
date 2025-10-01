@@ -19,11 +19,12 @@ pub struct Invitation {
     pub uses: u64,
     #[serde(rename = "maxUses")]
     pub max_uses: u64,
-    #[serde(rename = "expires")]
-    pub expire_date_time: DateTime<Utc>,
 
-    #[serde(rename = "createdAt")]
-    pub create_date_time: DateTime<Utc>,
+    #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
+    create_date_time: Option<DateTime<Utc>>,
+
+    #[serde(rename = "expires", skip_serializing_if = "Option::is_none")]
+    expire_date_time: Option<DateTime<Utc>>,
 }
 
 impl Default for Invitation {
@@ -40,8 +41,8 @@ impl Invitation {
             room_identifier: String::default(),
             uses: 0,
             max_uses: 0,
-            expire_date_time: DateTime::default(),
-            create_date_time: DateTime::default(),
+            expire_date_time: None,
+            create_date_time: None,
         }
     }
 }
@@ -93,11 +94,11 @@ mod tests {
         assert_eq!(invit.identifier, "D2F6of");
         assert_eq!(
             "2021-04-08 06:49:04.571 UTC",
-            invit.expire_date_time.to_string()
+            invit.expire_date_time.unwrap().to_string()
         );
         assert_eq!(
             "2021-04-07 06:49:04.571 UTC",
-            invit.create_date_time.to_string()
+            invit.create_date_time.unwrap().to_string()
         );
     }
 }
