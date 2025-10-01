@@ -56,6 +56,8 @@ pub struct Room {
     pub favorite: bool,
     #[serde(default)] // Return false by default
     pub open: bool,
+    #[serde(default)] // Return false by default
+    pub alert: bool,
 
     #[serde(default)] // Return false by default
     pub was_initialized: bool,
@@ -156,6 +158,7 @@ mod tests {
         assert!(!b.read_only);
         assert!(!b.open);
         assert!(!b.favorite);
+        assert!(!b.alert);
         assert_eq!(b.channel_type, RoomType::Unknown);
     }
 }
