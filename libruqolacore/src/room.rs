@@ -138,7 +138,7 @@ impl Room {
 
 #[cfg(test)]
 mod tests {
-    use crate::room::Room;
+    use crate::room::{Room, RoomType};
 
     #[test]
     fn test_is_empty() {
@@ -156,6 +156,6 @@ mod tests {
         assert!(!b.read_only);
         assert!(!b.open);
         assert!(!b.favorite);
-        // assert_eq!(b.channel_type, Room::RoomType::Unknown);
+        assert_eq!(b.channel_type, RoomType::Unknown);
     }
 }
