@@ -10,6 +10,7 @@ pub mod bannerinfo;
 pub mod bannerinfos;
 pub mod command;
 pub mod customsoundinfo;
+pub mod customsoundinfos;
 pub mod deviceinfo;
 pub mod emoticons;
 pub mod file;
