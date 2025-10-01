@@ -31,3 +31,9 @@ impl CustomSoundInfos {
         }
     }
 }
+
+#[test]
+fn test_parse_data() {
+    let result = CustomSoundInfos::new();
+    assert!(result.custom_sounds.is_empty());
+}
