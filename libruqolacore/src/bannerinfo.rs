@@ -13,6 +13,14 @@ pub struct TextArguments {
     text_arguments: Option<Vec<String>>,
 }
 
+impl TextArguments {
+    pub fn new() -> Self {
+        TextArguments {
+            text_arguments: None,
+        }
+    }
+}
+
 #[derive(Clone, Default, Deserialize, Debug)]
 #[serde(default)]
 pub struct BannerInfo {
@@ -69,10 +77,18 @@ impl fmt::Display for BannerInfo {
 #[cfg(test)]
 mod tests {
     use crate::bannerinfo::BannerInfo;
+    use crate::bannerinfo::TextArguments;
+
     use std::fs::File;
     pub fn parse(filename: &str) -> BannerInfo {
         let file = File::open(filename).expect("Failed to open file");
         serde_json::from_reader(file).expect("JSON was not well-formatted")
+    }
+
+    #[test]
+    fn test_textarguments() {
+        let b = TextArguments::new();
+        assert_eq!(b.text_arguments, None);
     }
 
     #[test]
