@@ -12,7 +12,7 @@ import {
     StandardListView,
     CheckBox,
 } from "std-widgets.slint";
-
+import { Icons } from "../icons.slint";
 export component AccountSettingsDialog inherits Dialog {
     title: @tr("Settings");
     callback updatebuttons();
@@ -49,6 +49,7 @@ export component AccountSettingsDialog inherits Dialog {
                 }
 
                 modify_button := Button {
+                    icon: Icons.edit-account;
                     text: @tr("✎ Modify");
                     enabled: false;
                     clicked => {
