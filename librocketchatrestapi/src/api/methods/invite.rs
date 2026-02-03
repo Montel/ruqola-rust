@@ -212,7 +212,7 @@ impl APIMethod for RemoveInviteMethod {
         Method::DELETE
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 

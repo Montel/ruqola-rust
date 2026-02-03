@@ -9,8 +9,8 @@ use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::restapiutils::RestApiUrlType;
 use reqwest::Method;
 
-use crate::api::methods::base::PayloadValue;
 use crate::api::methods::APIMethod;
+use crate::api::methods::base::PayloadValue;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 pub struct PermissionsListAllMethod {
     pub settings: AuthenticationType,
@@ -50,7 +50,7 @@ impl APIMethod for PermissionsListAllMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 

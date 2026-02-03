@@ -60,7 +60,7 @@ impl APIMethod for ChannelCreateMethod {
         Method::POST
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert("name".to_string(), PayloadValue::String(&self.name));
 
@@ -124,7 +124,7 @@ impl APIMethod for ChannelRemoveModeratorJob {
         Method::POST
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert("userId".to_string(), PayloadValue::String(&self.user_id));
         payload.insert("roomId".to_string(), PayloadValue::String(&self.channel_id));
@@ -181,7 +181,7 @@ impl APIMethod for ChannelRemoveLeaderMethod {
         Method::POST
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert("userId".to_string(), PayloadValue::String(&self.user_id));
         payload.insert("roomId".to_string(), PayloadValue::String(&self.channel_id));

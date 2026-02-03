@@ -6,7 +6,7 @@
 
 use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::restapiutils::RestApiUrlType;
-use crate::api::methods::{base::PayloadValue, APIMethod};
+use crate::api::methods::{APIMethod, base::PayloadValue};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 use reqwest::Method;
 use std::collections::HashMap;
@@ -50,7 +50,7 @@ impl APIMethod for LicensesIsEnterpriseMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -98,7 +98,7 @@ impl APIMethod for LicensesListMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
     fn domain(&self) -> &str {
@@ -108,9 +108,9 @@ impl APIMethod for LicensesListMethod {
 
 #[cfg(test)]
 mod tests {
+    use crate::api::methods::restapiutils::RestApiUrlType;
     use crate::methods::{APIMethod, LicensesIsEnterpriseMethod, LicensesListMethod};
     use reqwest::Method;
-    use crate::api::methods::restapiutils::RestApiUrlType;
 
     use libauthenticationbase::authenticationsettings::{AuthenticationType, LoginSettings};
 
@@ -131,7 +131,10 @@ mod tests {
         assert!(result.required_authentication());
         assert!(result.query_parameters().is_none());
         assert!(result.json_payload().is_none());
-        assert_eq!(result.endpointinfo().endpoint_type, RestApiUrlType::LicensesIsEntreprise);
+        assert_eq!(
+            result.endpointinfo().endpoint_type,
+            RestApiUrlType::LicensesIsEntreprise
+        );
     }
 
     #[test]
