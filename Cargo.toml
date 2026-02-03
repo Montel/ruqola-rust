@@ -1,0 +1,16 @@
+[workspace]
+members = [
+    "libauthenticationbase",
+    "libddpapi",
+    "librocketchatrestapi",
+    "libruqolacore",
+    "ruqola-rust-slint",
+    "ruqola-rust-cxx-qt",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Laurent Montel <laurent.montel@kdab.com>"]
+license = "LGPL-2.0-or-later"
