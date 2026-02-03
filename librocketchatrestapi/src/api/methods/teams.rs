@@ -7,10 +7,10 @@
 use reqwest::Method;
 use std::collections::HashMap;
 
+use crate::api::methods::APIMethod;
 use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::base::PayloadValue;
 use crate::api::methods::restapiutils::RestApiUrlType;
-use crate::api::methods::APIMethod;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 
 /// Implement teams.delete
@@ -53,7 +53,7 @@ impl APIMethod for GetTeamsListMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -105,7 +105,7 @@ impl APIMethod for GetTeamInfoMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 

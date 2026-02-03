@@ -6,7 +6,7 @@
 
 use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::restapiutils::RestApiUrlType;
-use crate::api::methods::{base::PayloadValue, APIMethod};
+use crate::api::methods::{APIMethod, base::PayloadValue};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 use reqwest::Method;
 use std::collections::HashMap;
@@ -54,7 +54,7 @@ impl APIMethod for GetModerationReportInfo {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -106,7 +106,7 @@ impl APIMethod for GetModerationReports {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -158,7 +158,7 @@ impl APIMethod for GetModerationDismissUserReports {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 

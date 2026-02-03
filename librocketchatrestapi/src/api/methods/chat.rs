@@ -9,7 +9,7 @@ use async_trait::async_trait;
 use reqwest::Method;
 use std::collections::HashMap;
 
-use crate::api::methods::{base::PayloadValue, APIMethod};
+use crate::api::methods::{APIMethod, base::PayloadValue};
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 // PostMessageMethod
 #[derive(Debug)]
@@ -66,7 +66,7 @@ impl APIMethod for PostMessageMethod {
         None
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert("roomId".to_string(), PayloadValue::String(&self.room_id));
 
@@ -138,7 +138,7 @@ impl APIMethod for DeleteMessageMethod {
         None
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert("roomId".to_string(), PayloadValue::String(&self.room_id));
         payload.insert("msgId".to_string(), PayloadValue::String(&self.message_id));
@@ -198,7 +198,7 @@ impl APIMethod for StarMessageMethod {
         true
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert(
             "messageId".to_string(),
@@ -256,7 +256,7 @@ impl APIMethod for UnStarMessageMethod {
         true
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert(
             "messageId".to_string(),
@@ -314,7 +314,7 @@ impl APIMethod for FollowMessageMethod {
         true
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert("mid".to_string(), PayloadValue::String(&self.mid));
         Some(payload)
@@ -374,7 +374,7 @@ impl APIMethod for IgnoreUserMethod {
         true
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert("rid".to_string(), PayloadValue::String(&self.rid));
         payload.insert("userId".to_string(), PayloadValue::String(&self.userId));
@@ -438,7 +438,7 @@ impl APIMethod for SnippetedMessagesMethod {
         true
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 }
@@ -497,7 +497,7 @@ impl APIMethod for PinMessageMethod {
         true
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert(
             "messageId".to_string(),

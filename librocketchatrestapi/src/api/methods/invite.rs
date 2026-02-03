@@ -9,8 +9,8 @@ use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::restapiutils::RestApiUrlType;
 use reqwest::Method;
 
-use crate::api::methods::base::PayloadValue;
 use crate::api::methods::APIMethod;
+use crate::api::methods::base::PayloadValue;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 
 // Invite job
@@ -52,7 +52,7 @@ impl APIMethod for InviteListMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -103,7 +103,7 @@ impl APIMethod for SendInvitationEmailMethod<'_> {
         Method::POST
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert(
             "emails".to_string(),
@@ -159,7 +159,7 @@ impl APIMethod for ValidateInviteTokenMethod {
         Method::POST
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         let mut payload: HashMap<String, PayloadValue> = HashMap::new();
         payload.insert("token".to_string(), PayloadValue::String(&self.token));
         Some(payload)

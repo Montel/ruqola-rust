@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+use crate::api::methods::APIMethod;
 use crate::api::methods::base::EndPointInfo;
 use crate::api::methods::base::PayloadValue;
 use crate::api::methods::restapiutils::RestApiUrlType;
-use crate::api::methods::APIMethod;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 use reqwest::Method;
 use std::collections::HashMap;
@@ -51,7 +51,7 @@ impl APIMethod for GetCommandsMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -99,7 +99,7 @@ impl APIMethod for GetListCommandsMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -148,7 +148,7 @@ impl APIMethod for RunCommandsMethod {
         Method::POST
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         // TODO
         None
     }
