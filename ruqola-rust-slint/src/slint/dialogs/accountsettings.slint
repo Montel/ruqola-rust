@@ -4,7 +4,14 @@
 * SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import { StandardButton, Button, VerticalBox, GridBox, StandardListView, CheckBox } from "std-widgets.slint";
+import {
+    StandardButton,
+    Button,
+    VerticalBox,
+    GridBox,
+    StandardListView,
+    CheckBox,
+} from "std-widgets.slint";
 
 export component AccountSettingsDialog inherits Dialog {
     title: @tr("Settings");
@@ -16,6 +23,9 @@ export component AccountSettingsDialog inherits Dialog {
 
     in property <[StandardListViewItem]> account-model;
     HorizontalLayout {
+        spacing: 12px;
+        padding: 10px;
+
         accountlist := StandardListView {
             model: root.account-model;
             current-item-changed => {
@@ -24,29 +34,38 @@ export component AccountSettingsDialog inherits Dialog {
         }
 
         Rectangle {
+            width: 140px;
+            background: @linear-gradient(90deg, #f5f5f5, #ffffff);
             VerticalLayout {
+                spacing: 6px;
+                padding: 8px;
+                alignment: start;
+
                 add_button := Button {
-                    text: @tr("Add Account");
+                    text: @tr("+ Add");
                     clicked => {
                         add_new_account_clicked();
                     }
                 }
 
                 modify_button := Button {
-                    text: @tr("Modify Account");
+                    text: @tr("✎ Modify");
                     enabled: false;
                     clicked => {
                         modify_account_clicked();
-                        // TODO
                     }
                 }
 
                 remove_button := Button {
-                    text: @tr("Remove Account");
+                    text: @tr("✕ Remove");
                     enabled: false;
                     clicked => {
                         remove_account_clicked(accountlist.current-item);
                     }
+                }
+
+                Rectangle {
+                    height: 1px;
                 }
             }
         }
