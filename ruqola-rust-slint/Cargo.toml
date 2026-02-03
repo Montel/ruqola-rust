@@ -3,7 +3,7 @@
 [package]
 name = "ruqola-rust"
 version = "0.1.1"
-edition = "2021"
+edition = "2024"
 build = "src/build.rs"
 authors = ["Laurent Montel <laurent.montel@kdab.com>"]
 license = "LGPL-2.0-or-later"
