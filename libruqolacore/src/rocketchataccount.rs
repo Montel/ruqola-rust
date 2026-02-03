@@ -1,6 +1,6 @@
 use crate::rocketchataccountmanager::CommandToBackend;
 /*
-* SPDX-FileCopyrightText: 2023-2025 Laurent Montel <laurent.montel@kdab.com>
+* SPDX-FileCopyrightText: 2023-2026 Laurent Montel <laurent.montel@kdab.com>
 *
 * SPDX-License-Identifier: LGPL-2.0-or-later
 */
