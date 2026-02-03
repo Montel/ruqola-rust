@@ -5,14 +5,13 @@
  */
 
 import { Page } from "../page.slint";
-import { Button, LineEdit, StandardListView} from "std-widgets.slint";
+import { Button, LineEdit, StandardListView } from "std-widgets.slint";
 import { PageType } from "../singletons/screencontroller.slint";
 import { Icons } from "../icons.slint";
 
 export component MainPage inherits Page {
     screen-id: PageType.MainPage;
     callback send_message(string);
-    callback show_configure_accounts();
     callback show_accounts();
     callback disconnect_account();
     callback quit();
@@ -26,13 +25,6 @@ export component MainPage inherits Page {
     VerticalLayout {
         HorizontalLayout {
             Button {
-                text: @tr("Configure Accounts");
-                clicked => {
-                    root.show_configure_accounts();
-                }
-            }
-
-            Button {
                 text: @tr("Connect");
                 clicked => {
                     root.show_accounts();
@@ -43,13 +35,6 @@ export component MainPage inherits Page {
                 text: @tr("Disconnect");
                 clicked => {
                     root.disconnect-account();
-                }
-            }
-
-            Button {
-                text: @tr("Quit");
-                clicked => {
-                    root.quit();
                 }
             }
         }

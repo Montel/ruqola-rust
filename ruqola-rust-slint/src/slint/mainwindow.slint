@@ -4,7 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import { Button, LineEdit, StandardListView, StandardButton, AboutSlint} from "std-widgets.slint";
+import {
+    Button,
+    LineEdit,
+    StandardListView,
+    StandardButton,
+    AboutSlint,
+} from "std-widgets.slint";
 
 import { MainPage } from "screens/mainpage.slint";
 import { SelectAccountsPage } from "screens/selectaccount.slint";
@@ -55,6 +61,16 @@ export component RuqolaWindow inherits Window {
         }
 
         Menu {
+            title: @tr("MenuBar" => "Configure");
+            MenuItem {
+                title: @tr("MenuBar" => "Settings...");
+                activated => {
+                    root.show_configure_accounts();              // TODO add dialogbox
+                }
+            }
+        }
+
+        Menu {
             title: @tr("MenuBar" => "Help");
             MenuItem {
                 title: @tr("MenuBar" => "About...");
@@ -74,10 +90,6 @@ export component RuqolaWindow inherits Window {
         quit => {
             root.quit();
         }
-        show-configure-accounts => {
-            root.show_configure_accounts();
-        }
-
         show_accounts => {
             ScreenController.resolved-page-id = PageType.SelectAccount;
             root.show_accounts();
