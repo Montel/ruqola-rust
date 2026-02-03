@@ -32,7 +32,7 @@ impl Rooms {
         }
     }
 
-    pub fn parse_insert_rooms(&mut self, insertroom: &Vec<Value>) {
+    pub fn parse_insert_rooms(&mut self, insertroom: &[Value]) {
         insertroom.iter().for_each(|room: &Value| {
             if let Some(j) = room.as_object() {
                 let room_id;

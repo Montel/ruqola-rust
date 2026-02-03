@@ -55,8 +55,10 @@ mod tests {
 
     #[test]
     fn test_has_role() {
-        let mut r = Role::default();
-        r.user_id = String::from("foo");
+        let mut r = Role {
+            user_id: String::from("foo"),
+            ..Role::default()
+        };
         assert!(!r.clone().has_role());
         r.is_owner = true;
         assert!(r.clone().has_role());

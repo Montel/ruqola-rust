@@ -10,8 +10,8 @@ use crate::api::methods::restapiutils::RestApiUrlType;
 
 use reqwest::Method;
 
-use crate::api::methods::base::PayloadValue;
 use crate::api::methods::APIMethod;
+use crate::api::methods::base::PayloadValue;
 use libauthenticationbase::authenticationsettings::AuthenticationType;
 /// Implement GetRooms
 pub struct GetRoomsMethod {
@@ -51,7 +51,7 @@ impl APIMethod for GetRoomsMethod {
         Method::GET
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -103,7 +103,7 @@ impl APIMethod for GetDiscussionsMethod {
         Some(payload)
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
 
@@ -155,9 +155,10 @@ impl APIMethod for GetRoomInfoMethod {
         Some(payload)
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
         None
     }
+
     fn domain(&self) -> &str {
         &self.server_url
     }
@@ -206,8 +207,8 @@ impl APIMethod for ChangeRoomFavoriteMethod {
         None
     }
 
-    fn json_payload(&self) -> Option<HashMap<String, PayloadValue>> {
-        let mut payload: HashMap<String, PayloadValue> = HashMap::new();
+    fn json_payload(&self) -> Option<HashMap<String, PayloadValue<'_>>> {
+        let mut payload: HashMap<String, PayloadValue<'_>> = HashMap::new();
         payload.insert("favorite".to_string(), PayloadValue::Bool(&self.favorite));
         payload.insert("roomId".to_string(), PayloadValue::String(&self.room_id));
 
