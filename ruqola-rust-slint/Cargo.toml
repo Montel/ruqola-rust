@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LGPL-2.0-or-later
 [package]
 name = "ruqola-rust"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 build = "src/build.rs"
 authors = ["Laurent Montel <laurent.montel@kdab.com>"]
