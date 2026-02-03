@@ -42,7 +42,7 @@ export component AccountSettingsDialog inherits Dialog {
                 alignment: start;
 
                 add_button := Button {
-                    text: @tr("+ Add");
+                    text: @tr("➕ Add");
                     clicked => {
                         add_new_account_clicked();
                     }
@@ -57,7 +57,7 @@ export component AccountSettingsDialog inherits Dialog {
                 }
 
                 remove_button := Button {
-                    text: @tr("✕ Remove");
+                    text: @tr("🗑 Remove");
                     enabled: false;
                     clicked => {
                         remove_account_clicked(accountlist.current-item);
